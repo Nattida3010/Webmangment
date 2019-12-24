@@ -1,6 +1,7 @@
 <template>
 
-  <table class="table" id ="tb">
+<div class="container" style="margin-top:5%" >
+    <table class="table table-bordered">
     <tr style="background-color: #92a8d1" >
    
       <td class="sbjname" >SubjectNameEN</td>
@@ -9,21 +10,27 @@
       <td>SubjectNameEN</td>
       <td>EduYearTH</td>
       <td>Grade</td>
+            <td>Delete</td>
+      <td>EDit</td>
+      <td>Viwe</td>
     </tr>
 
-    <template v-for="(v) in info">
+    <template v-for="(v) in info" >
       <tr v-if="(v.EduYearTH =='2559')" :key="v">
-        <td class="sbjname">{{v.SubjectNameEN}}</td>
-        <td>{{v.SubjectCode}}</td>
+        <td  class="sbjname">{{v.SubjectNameEN}}</td>
+        <td >{{v.SubjectCode}}</td>
           <td>{{v.SubjectID}}</td>
             <td>{{v.SubjectNameEN}}</td>
              <td>{{v.EduYearTH}}</td>
         <td>{{v.Grade}}</td>
+   <td><b-button variant="outline-danger" >Delete</b-button></td>
+  <td> <b-button variant="outline-warning">Edit</b-button></td>
+  <td><b-button  variant="outline-success">Viwe</b-button></td>
       </tr>
     </template>
    
   </table>
-  
+  </div>
 </template>
 
 <script>

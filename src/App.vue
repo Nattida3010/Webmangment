@@ -54,7 +54,7 @@
     <router-view/>
     <div>
 <button  @click="test" id = "make">Make Multiple Requests</button></div> 
- <input type="text" v-model="id">
+ <!-- <input type="text" v-model="id"> -->
 <template v-for="(value) in info" >
   <div :key="value">
       <!-- {{value.SubjectNameTH}}
@@ -72,7 +72,7 @@ export default {
   data(){
     return{
       info: "",
-      id:""
+      // id:""
     }
   },
     methods: {
