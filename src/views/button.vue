@@ -54,22 +54,22 @@ export default {
             filter: null,
             fields:[
             {
-                key:"category_id",
+                key:"ContactID",
                 sortable : true,
                   variant : 'info'
             },
             {
-                key:"description",
+                key:"Name",
                 sortable : true,
                variant :"danger"
             },
             {
-                key:"picture",
+                key:"Address",
                 sortable : true,
                 variant : "success"
             },
                 {
-                key:"show_details",
+                key:"Mobile",
              
             }
             ],
@@ -86,10 +86,10 @@ export default {
     mounted(){
       var instance = this;
         axios
-        .get("https://pure-fjord-76227.herokuapp.com/api/categories/")
+        .get("https://localhost:44362/student/NameMethod2")
         .then(function(response){
             console.log(response.data);
-          instance.categories = response.data.data;
+          instance.categories = response.data;
         });
     }
 };

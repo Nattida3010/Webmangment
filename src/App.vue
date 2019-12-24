@@ -23,6 +23,12 @@
        
       </b-navbar-nav>
       </div>
+      <div>
+         <b-navbar-nav>
+        <router-link style="color:white; margin-left:10px;" to="/model">model</router-link>
+       
+      </b-navbar-nav>
+      </div>
       
 
       <!-- Right aligned nav items -->
@@ -77,7 +83,7 @@ export default {
   },
     methods: {
       async test(){
-        let res = await axios.get('https://sispsu.herokuapp.com/api/grade/5930213034/')
+        let res = await axios.get("https://localhost:44362/student/NameMethod2")
         this.info = res.data.data;
         console.log(this.info);
         

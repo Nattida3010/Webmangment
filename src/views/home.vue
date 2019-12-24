@@ -2,8 +2,8 @@
 
 <div class="container" style="margin-top:5%" >
        <b-row>
-     <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Filter" class="mb-0">
+      <b-col md="6" class="my-1">
+        <b-form-group horizontal label="Filter" class="mb-0" >
           <b-input-group>
             <b-form-input v-model="filter" placeholder="Type to Search" />
             <b-input-group-append>
@@ -42,18 +42,9 @@ m</template>
         </b-card>
       </template>
             </b-table>
-            <b-col md="6" class="my-1">
-  <b-pagination align="center" size="md" :total-rows="items.length" v-model="pageIndex" :per-page="pageSize">
-    </b-pagination> 
-     </b-col>
-    <br>
- <b-col md="6" class="my-1">
-    <div>CurrentPage: {{pageIndex}}</div>  
-     </b-col>
             <b-pagination  align="center"  size="md" :total-rows="categories.length" v-model="pageIndex" :per-page="pageSize">
     </b-pagination>
     </div>
-    
 </template>
 <script>
 import axios from "axios";
@@ -71,22 +62,22 @@ export default {
             {
                 key:"SubjectNameEN",
                 sortable : true,
-                  variant : 'info'
+                  // variant : 'info'
             },
             {
                 key:"SubjectCode",
                 sortable : true,
-               variant :"danger"
+              //  variant :"danger"
             },
             {
                 key:"EduYearTH",
                 sortable : true,
-                variant : "success"
+                // variant : "success"
             },
              {
                 key:"Grade",
                 sortable : true,
-                variant : "success"
+                // variant : "success"
             },
                 {
                 key:"EDIT",
