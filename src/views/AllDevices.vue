@@ -82,8 +82,8 @@
   <b-card no-body  >
     <b-tabs pills card vertical nav-wrapper-class="w-25" >
       <div >
-      <b-tab  variant="info"  title="DEVICE" active><b-card-text><Table/></b-card-text></b-tab>
-      <b-tab title="Tab 2"><b-card-text><About/></b-card-text></b-tab>
+      <b-tab  variant="info"  title="DEVICE" active><About/></b-tab>
+      <b-tab title="Tab 2"><Table/></b-tab>
       <b-tab title="Tab 3"></b-tab>
         <b-tab title="Tab 2"></b-tab>
       <b-tab title="Tab 3"></b-tab>
