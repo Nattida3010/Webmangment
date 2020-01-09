@@ -6,6 +6,7 @@ import home from './views/home.vue'
 import a from './views/button.vue'
 import c from './views/model.vue'
 import d from './views/edit.vue'
+import AllDevices from './views/AllDevices.vue'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -21,6 +22,7 @@ const routes = [
   {path: '/home' , component: home},
   {path: '/model' , component: c},
   {path: '/edit' , component: d},
+  {path: '/AllDevices', component:  AllDevices},
   {path: '/button' , component: a}
 
 ]

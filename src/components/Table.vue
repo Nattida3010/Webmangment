@@ -60,22 +60,22 @@ export default {
             filter: null,
             fields:[
             {
-                key:"AppPlatID",
+                key:"SubjectNameEN",
                 sortable : true,
                   // variant : 'info'
             },
             {
-                key:"IMEI",
+                key:"SubjectCode",
                 sortable : true,
               //  variant :"danger"
             },
             {
-                key:"IoTPlatID",
+                key:"EduYearTH",
                 sortable : true,
                 // variant : "success"
             },
              {
-                key:"Manufacturer",
+                key:"Grade",
                 sortable : true,
                 // variant : "success"
             },

@@ -60,22 +60,22 @@ export default {
             filter: null,
             fields:[
             {
-                key:"SubjectNameEN",
+                key:"AppPlatID",
                 sortable : true,
                   // variant : 'info'
             },
             {
-                key:"SubjectCode",
+                key:"IMEI",
                 sortable : true,
               //  variant :"danger"
             },
             {
-                key:"EduYearTH",
+                key:"IoTPlatID",
                 sortable : true,
                 // variant : "success"
             },
              {
-                key:"Grade",
+                key:"Manufacturer",
                 sortable : true,
                 // variant : "success"
             },
@@ -105,7 +105,7 @@ export default {
     mounted(){
       var instance = this;
         axios
-        .get("https://sispsu.herokuapp.com/api/grade/5930213034/")
+         .get("https://localhost:44322/device/testdata")
         .then(function(response){
             console.log(response.data);
           instance.categories = response.data.data;
