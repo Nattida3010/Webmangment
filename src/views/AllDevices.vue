@@ -1,41 +1,38 @@
   
 <template>
   <div  id="app">
-   <div id="nav">
-  <b-navbar toggleable="lg" type="dark" >
-    <b-navbar-brand   id="round-button"></b-navbar-brand>
-    <h6 id="h6">Device Management</h6>
+    <div id="nav">
+      <b-navbar toggleable="lg" type="dark" >
+        <b-navbar-brand   id="round-button"></b-navbar-brand>
+        <h6 id="h6">Device Management</h6>
 
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav >
-        <router-link style="color:white;" to="/about">About</router-link>
-      </b-navbar-nav>
-      <div>
-         <b-navbar-nav>
+        <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav >
+          <router-link style="color:white;" to="/about">About</router-link>
+        </b-navbar-nav>
+        <div>
+          <b-navbar-nav>
         <router-link style="color:white; margin-left:10px;" to="/home">Home</router-link>
-       
+        
       </b-navbar-nav>
-      </div>
-      <div>
-         <b-navbar-nav>
+    </div>
+    <div>
+      <b-navbar-nav>
         <router-link style="color:white; margin-left:10px;" to="/button">button</router-link>
-       
       </b-navbar-nav>
-      </div>
-      <div>
-         <b-navbar-nav>
+    </div>
+    <div>
+      <b-navbar-nav>
         <router-link style="color:white; margin-left:10px;" to="/model">model</router-link>
-       
       </b-navbar-nav>
-      </div>
-      <div>
-         <b-navbar-nav>
+    </div>
+    <div>
+      <b-navbar-nav>
         <router-link style="color:white; margin-left:10px;" to="/AllDevices">AllDevices</router-link>
-       
-      </b-navbar-nav>
-      </div>
+    </b-navbar-nav>
+  </div>
       
 
       <!-- Right aligned nav items -->
@@ -59,37 +56,21 @@
           </template>
           <b-dropdown-item>Profile</b-dropdown-item>
           <b-dropdown-item >Sign Out</b-dropdown-item>
+          
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </div>
-    <router-view/>
-    <!-- <div>
-<button  @click="test" id = "make">Make Multiple Requests</button></div>  -->
- <!-- <input type="text" v-model="id"> -->
-<!-- <div>
-  <b-card no-body>
-    <b-tabs pills card vertical nav-wrapper-class="w-50">
-      <b-tab title="Tab 1" active><b-card-text>Tab contents 1</b-card-text></b-tab>
-      <b-tab title="Tab 2"><b-card-text>Tab contents 2</b-card-text></b-tab>
-      <b-tab title="Tab 3"><b-card-text>Tab contents 3</b-card-text></b-tab>
-    </b-tabs>
-  </b-card>
-</div> -->
-
+<router-view/>
 <div>
-  <b-card no-body  >
-    <b-tabs pills card vertical nav-wrapper-class="w-25" >
-      <div >
-      <b-tab  variant="info"  title="DEVICE" active><About/></b-tab>
-      <b-tab title="Tab 2"><Table/></b-tab>
-      <b-tab title="Tab 3"></b-tab>
-        <b-tab title="Tab 2"></b-tab>
-      <b-tab title="Tab 3"></b-tab>
-        <b-tab title="Tab 2"></b-tab>
-      <b-tab title="Tab 3"></b-tab>
-      </div>
+  <b-card no-body id="tabs" >
+    <b-tabs   pills card vertical nav-wrapper-class="w-10">
+
+      <b-tab title=" ALL DEVICES"> <About/></b-tab>
+    
+      <b-tab title="ADD DEVICE"><Table/></b-tab>
+      
     </b-tabs>
   </b-card>
 </div>
@@ -101,6 +82,7 @@
 import axios from 'axios'
 import Table from '@/components/Table'
 import About from '@/components/About'
+
 export default {
   components:{
     Table , About
@@ -153,7 +135,6 @@ font-weight:bold;
 #bar{
   height:588px;
    width: 150px;
-
-    
 }
+
 </style>
