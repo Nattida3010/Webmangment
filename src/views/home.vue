@@ -1,115 +1,57 @@
 <template>
-
-<div class="container" style="margin-top:5%" >
-       <b-row>
-      <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Filter" class="mb-0" >
-          <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search" />
-            <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-      </b-row>
-      <b-table striped hover
-           :items="categories" 
-           :fields="fields" 
-           :filter="filter"
-            :per-page ="pageSize"
-            :current-page="pageIndex">
-       
-            <template slot="EDIT" slot-scope="row">
-        <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
-      
-        <b-button size="sm" @click.stop="row.toggleDetails">
-          {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-        </b-button>
-        </template>
-         <template slot="action" slot-scope="row">
-
-       <!-- we use @click.stop here to prevent emitting of a 'row-clicked' event  -->
-      <b-button size="sm" @click.stop="row.toggleDetails" class="mr-2">
-       {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
-          </b-button>
-m</template>
-      <template slot="row-details" slot-scope="row">
-        <b-card>
-          <ul>
-            <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value}}</li>
-          </ul>
-        </b-card>
-      </template>
-            </b-table>
-            <b-pagination  align="center"  size="md" :total-rows="categories.length" v-model="pageIndex" :per-page="pageSize">
-    </b-pagination>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Vue Axios Post - ItSolutionStuff.com</div>
+    
+                    <div class="card-body">
+                        <form @submit="formSubmit">
+                        <strong>Name:</strong>
+                        <input type="text" class="form-control" v-model="name">
+                        <strong>Description:</strong>
+                        <textarea class="form-control" v-model="description"></textarea>
+    
+                        <button class="btn btn-success">Submit</button>
+                        </form>
+                        <strong>Output:</strong>
+                        <pre>
+                        {{output}}
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
+     
 <script>
-import axios from "axios";
-
-export default {
-    name : "categories",
-    data(){
-        return {
-            message: "Project 2",
-            categories:[],
-            pageSize:10,
-            pageIndex:1,
-            filter: null,
-            fields:[
-            {
-                key:"AppPlatID",
-                sortable : true,
-                  // variant : 'info'
-            },
-            {
-                key:"IMEI",
-                sortable : true,
-              //  variant :"danger"
-            },
-            {
-                key:"IoTPlatID",
-                sortable : true,
-                // variant : "success"
-            },
-             {
-                key:"Manufacturer",
-                sortable : true,
-                // variant : "success"
-            },
-                {
-                key:"EDIT",
-             
-            },
-            {  key:"DELETE",
-       
-
-            },
-            {
-                key:"VIWE",
-            
+    export default {
+        mounted() {
+            console.log('Component mounted.')
+        },
+        data() {
+            return {
+              name: '',
+              description: '',
+              output: ''
+            };
+        },
+        methods: {
+            formSubmit(e) {
+                e.preventDefault();
+                let currentObj = this;
+                this.axios.post('http://localhost:8000/yourPostApi', {
+                    name: this.name,
+                    description: this.description
+                })
+                .then(function (response) {
+                    currentObj.output = response.data;
+                })
+                .catch(function (error) {
+                    currentObj.output = error;
+                });
             }
-            ],
         }
-    },
-    computed: {
-    sortOptions () {
-      // Create an options list from our fields
-      return this.fields
-        .filter(f => f.sortable)
-        .map(f => { return { text: f.label, value: f.key } })
     }
-  },
-    mounted(){
-      var instance = this;
-        axios
-         .get("https://localhost:44322/device/testdata")
-        .then(function(response){
-            console.log(response.data);
-          instance.categories = response.data.data;
-        });
-    }
-};
 </script>

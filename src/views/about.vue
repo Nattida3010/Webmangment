@@ -33,7 +33,7 @@
       <b-button size="sm" @click.stop="row.toggleDetails" class="mr-2">
        {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
           </b-button>
-m</template>
+</template>
       <template slot="row-details" slot-scope="row">
         <b-card>
           <ul>

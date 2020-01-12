@@ -1,38 +1,43 @@
   
 <template>
+
   <div  id="app">
+
     <div id="nav">
-      <b-navbar toggleable="lg" type="dark" >
+
+     <b-navbar toggleable="lg" type="dark" >
         <b-navbar-brand   id="round-button"></b-navbar-brand>
-        <h6 id="h6">Device Management</h6>
+          <h6 id="h6">Device Management</h6>
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+            <b-collapse id="nav-collapse" is-nav>
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav >
-          <router-link style="color:white;" to="/about">About</router-link>
+           <router-link style="color:white;" to="/about">About</router-link>
         </b-navbar-nav>
+
         <div>
           <b-navbar-nav>
-        <router-link style="color:white; margin-left:10px;" to="/home">Home</router-link>
-        
+             <router-link style="color:white; margin-left:10px;" to="/home">Home</router-link>
+          </b-navbar-nav>
+       </div>
+
+      <div>
+        <b-navbar-nav>
+          <router-link style="color:white; margin-left:10px;" to="/button">button</router-link>
+        </b-navbar-nav>
+      </div>
+
+      <div>
+        <b-navbar-nav>
+          <router-link style="color:white; margin-left:10px;" to="/model">model</router-link>
+        </b-navbar-nav>
+      </div>
+      
+      <div>
+        <b-navbar-nav>
+          <router-link style="color:white; margin-left:10px;" to="/AllDevices">AllDevices</router-link>
       </b-navbar-nav>
     </div>
-    <div>
-      <b-navbar-nav>
-        <router-link style="color:white; margin-left:10px;" to="/button">button</router-link>
-      </b-navbar-nav>
-    </div>
-    <div>
-      <b-navbar-nav>
-        <router-link style="color:white; margin-left:10px;" to="/model">model</router-link>
-      </b-navbar-nav>
-    </div>
-    <div>
-      <b-navbar-nav>
-        <router-link style="color:white; margin-left:10px;" to="/AllDevices">AllDevices</router-link>
-    </b-navbar-nav>
-  </div>
       
 
       <!-- Right aligned nav items -->
@@ -63,21 +68,23 @@
   </b-navbar>
 </div>
 <router-view/>
-<div>
-  <b-card no-body id="tabs" >
-    <b-tabs   pills card vertical nav-wrapper-class="w-10">
 
-      <b-tab title=" ALL DEVICES"> <About/></b-tab>
-    
-      <b-tab title="ADD DEVICE"><Table/></b-tab>
-      
-    </b-tabs>
-  </b-card>
+    <div>
+      <b-card no-body id="tabs" >
+        <b-tabs   pills card vertical nav-wrapper-class="w-10">
+
+
+          <b-tab title=" ALL DEVICES"> <About/></b-tab>
+        
+          <b-tab title="ADD DEVICE"><Table/></b-tab>
+          
+        </b-tabs>
+      </b-card>
+    </div>
 </div>
-  </div>
 
- 
 </template>
+
 <script>
 import axios from 'axios'
 import Table from '@/components/Table'
