@@ -1,9 +1,13 @@
-<template>  
+<template  >  
 
 <div  id="All" class="container" align="center" >
-  
+  <div>
+  <b-jumbotron id = "jumhead" >
+    <div id="bt-add"> 
+      <b-button  pill variant="info" >ADD</b-button>
+  </div>
   <b-row >
-    <b-col md="6" class="my-1"  id="search"  >
+    <b-col md="6" class="my-2"  id="search"   >
       <b-form-group horizontal  class="mb-0" >
         <b-input-group id="input" > 
           <b-form-input v-model="filter" placeholder="Type to Search" />
@@ -14,18 +18,19 @@
       </b-form-group>
     </b-col>
   </b-row>
+    
+</b-jumbotron> 
+</div>
 
-  <div id="bt-add"> 
-      <b-button  pill variant="success" >ADD</b-button>
-  </div>
-
+<div>
+<b-jumbotron  id="jumbody">
   <b-table 
           striped hover 
           :items="info" 
           :fields="fields" 
           :filter="filter"
           :per-page ="pageSize"
-          :current-page="pageIndex" align="center" >
+          :current-page="pageIndex" align="center"   >
 
       <template v-slot:cell(DETELE)="row">
           <b-button pill variant="outline-danger" v-b-modal.modal-center>DETELE</b-button>
@@ -34,11 +39,13 @@
       <template v-slot:cell(EDIT)="row">
           <b-button pill variant="outline-warning" v-on:click="showAlert" >EDIT</b-button>
       </template>
-
-       <template v-slot:cell(VIEW)="row">
-          <b-button pill variant="outline-warning"  >VIEW</b-button>
+      <template v-slot:cell(VIEW)="row">
+          <b-button   pill variant="outline-warning"   size="sm"
+           @click="test( row.item.IMEI, row.item.SerialNumber , row.item.Manufacturer, row.item.NameS,row.item.NameA,row.item.NameI)" 
+           class="mr-1">VIEW
+          </b-button> 
       </template>
-      
+     
        <template  v-slot:cell(show_details)="row">
         <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
         <b-button  pill variant="outline-info" size="sm" @click.stop="row.toggleDetails">
@@ -46,11 +53,7 @@
         </b-button>
       </template>
 
-      <!-- <template slot="row-details" slot-scope="row">
-        <b-card>
-            <li v-for="(value, key) in row.item" :key="key">{{key}}: {{ value}}</li>
-        </b-card>
-      </template> -->
+  
       
       <template v-slot:row-details="row">
         <b-card>
@@ -76,12 +79,12 @@
           </b-row>
 
           <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right"><b> App_Name : </b></b-col>
+            <b-col sm="3" class="text-sm-right"><b> Application Platform Name : </b></b-col>
             <b-col>{{ row.item.NameA}}</b-col>
           </b-row>
 
           <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right"><b> IOT_Name : </b></b-col>
+            <b-col sm="3" class="text-sm-right"><b> IOT Platform Name : </b></b-col>
             <b-col>{{ row.item.NameI}}</b-col>
           </b-row>
 
@@ -89,7 +92,26 @@
 
         </b-card>
       </template>
-  </b-table>  
+  </b-table >  
+      <!-- Info modal -->
+    <!-- <b-modal  :id="infoModal.id" :title= "infoModal.id" ok-only @hide="resetInfoModal"> -->
+        <b-modal  
+          title="Device Detail"
+          :id="infoModal.id" 
+          :header-bg-variant="headerBgVariant"
+          :header-text-variant="headerTextVariant"
+          :body-bg-variant="bodyBgVariant"
+          :body-text-variant="bodyTextVariant"
+          :footer-bg-variant="footerBgVariant"
+          :footer-text-variant="footerTextVariant" 
+          ok-only @hide="resetInfoModal">
+              <pre><b> IMEI :</b>        {{infoModal.id }}</pre> 
+              <pre><b> SerialNumber :</b>{{infoModal.title }}</pre> 
+              <pre><b> Status : </b>     {{ infoModal.NameS }}</pre>
+              <pre><b> Manufacturer :</b>{{infoModal.content}} </pre>
+              <pre><b> Application Platform Name  : </b> {{ infoModal.NameA }}</pre>
+              <pre><b> IOT Platform Name  : </b>   {{infoModal.NameI }}</pre>           
+         </b-modal>
 
 <div>
     <b-modal id="modal-center" centered title="Alert">
@@ -108,7 +130,8 @@
   <div align="center"  >
       CurrentPage: {{pageIndex}}
   </div>  
-
+</b-jumbotron> 
+</div>
 </div>
 
 </template>
@@ -127,6 +150,13 @@
         //  AppPlatID: "",
          NameS:"",
       },
+      variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+      headerBgVariant: 'primary',
+      headerTextVariant: 'light',
+      bodyBgVariant: 'light',
+      bodyTextVariant: 'dark',
+      footerBgVariant: 'light',
+      footerTextVariant: 'dark',
        pageSize:10,
        pageIndex:1,
        filter: null,
@@ -144,10 +174,18 @@
           {key:"show_details",label: 'DETAIL'},
           {key:"VIEW"}
         
-              ], 
+            ], 
+           infoModal: {
+          id: '',
+          title: '',
+          content: '',
+          NameS:'',
+          NameA: '',
+          NameI:''
+
+        }
             };
           },
-
               mounted() {
                 var self = this;
                 axios
@@ -160,6 +198,23 @@
            },
             
                methods: {
+                     // eslint-disable-next-line vue/no-dupe-keys
+                    test(a,b,c,d,e,f) {
+                    // console.log(a,b,c);
+                      this.infoModal.id = a,
+                      this.infoModal.title = b ,
+                      this.infoModal.content = c,
+                      this.infoModal.NameS = d,
+                      this.infoModal.NameA = e,
+                      this.infoModal.NameI = f,
+                      this.$root.$emit('bv::show::modal', a,b,c,d,e,f)
+                    },
+                    // resetInfoModal() {
+                    //   this.infoModal.title = ''
+                    //   this.infoModal.content = ''
+                    // },
+     
+
                     showAlert(){
                       // Use sweetalret2
                       this.$confirm("Are you sure?").then(() => {
@@ -172,6 +227,16 @@
 
 
 <style >
+
+        @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+        html, body {
+          font-family: 'Montserrat', sans-serif;
+        }
+
+        #app {
+        font-family: 'Montserrat', sans-serif;
+        }
         #search{
         margin-left:15%;
       
@@ -180,12 +245,34 @@
         margin-bottom:2%;
         }
         #bt-add{
-        margin-bottom:3%;
+        /* margin-bottom:3%; */
         margin-left:80%;
         }
 
         #test{
           width:50%;
         }
- 
+
+        #jumhead{
+            /* background-image: linear-gradient(135deg,#83a4d4,#b6fbff); */
+          /* background-image: url("/img/jum.jpg"); */
+          /* background-image: linear-gradient(135deg,#667eea,#764ba2); */
+          height: 200px;
+          background-position: center;
+        
+          background-size: cover;
+          position: relative;
+        }
+
+        #jumbody{
+           /* background-image: url("/img/jum.jpg"); */
+          margin-top:2%;
+       
+          background-position: center;
+        
+          background-size: cover;
+          position: relative;
+        }
+
+     
 </style>

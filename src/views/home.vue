@@ -1,57 +1,38 @@
+
+
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Vue Axios Post - ItSolutionStuff.com</div>
-    
-                    <div class="card-body">
-                        <form @submit="formSubmit">
-                        <strong>Name:</strong>
-                        <input type="text" class="form-control" v-model="name">
-                        <strong>Description:</strong>
-                        <textarea class="form-control" v-model="description"></textarea>
-    
-                        <button class="btn btn-success">Submit</button>
-                        </form>
-                        <strong>Output:</strong>
-                        <pre>
-                        {{output}}
-                        </pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="user">
+
+<input type="text" v-model="userinfo.name" placeholder="EnteryourName"><br>
+<input type="text" v-model="userinfo.eamil" placeholder="EnteryourEmail"><br>
+<input type="text" v-model="userinfo.age" placeholder="EnteryourAge"><br>
+<input type="text" v-model="userinfo.Britday" placeholder="EnteryourBrithday"><br>
+<button v-on:click="adduser()">add</button>
+
+    <ul>
+    <li v-for="{email, name,age,Britday} in userinfo" :key="name">{{name}} Email:{{email}} age:{{age}} birthday: {{Britday}}</li>
+</ul>
+  </div>
 </template>
-     
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        },
-        data() {
-            return {
-              name: '',
-              description: '',
-              output: ''
-            };
-        },
-        methods: {
-            formSubmit(e) {
-                e.preventDefault();
-                let currentObj = this;
-                this.axios.post('http://localhost:8000/yourPostApi', {
-                    name: this.name,
-                    description: this.description
-                })
-                .then(function (response) {
-                    currentObj.output = response.data;
-                })
-                .catch(function (error) {
-                    currentObj.output = error;
-                });
-            }
-        }
+export default {
+  name: 'user',
+  data(){
+    return{
+      userinfo: [
+        
+      ]
     }
+  },
+  methods: {
+  adduser: function(){
+    this.userinfo.push({
+      name : this.userinfo.name,
+      email : this.userinfo.email,
+      age : this.userinfo.age,
+      Britday : this.userinfo.Britday,
+    })
+  }
+  },
+}
 </script>

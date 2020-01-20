@@ -23,9 +23,45 @@
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
+      <b-row class="my-1">
+    <b-col sm="4">
+      <label for="input-none">IMEI :</label>
+    </b-col>
+    <b-col sm="5">
+           <b-form-input></b-form-input>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+      <b-row class="my-1">
+    <b-col sm="4">
+      <label for="input-none">Serial number:</label>
+    </b-col>
+    <b-col sm="5">
+           <b-form-input></b-form-input>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
     <b-row class="my-1">
     <b-col sm="4">
       <label for="input-none">Manufacturer Name:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="selected" :options="options"></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+   <b-row class="my-1">
+    <b-col sm="4">
+      <label for="input-none">Model Name:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="selected" :options="options"></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+     <b-row class="my-1">
+    <b-col sm="4">
+      <label for="input-none">Model Band:</label>
     </b-col>
     <b-col sm="5">
        <b-form-select v-model="selected" :options="options"></b-form-select>
@@ -41,6 +77,25 @@
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
+        <b-row class="my-1">
+    <b-col sm="4">
+      <label for="input-none">IMST:</label>
+    </b-col>
+    <b-col sm="5">
+           <b-form-input></b-form-input>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+      <b-row class="my-1">
+    <b-col sm="4">
+      <label for="input-none">Telephone number:</label>
+    </b-col>
+    <b-col sm="5">
+           <b-form-input></b-form-input>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+ 
  <b-row class="my-1">
     <b-col sm="4">
       <label for="input-none">Sim Type:</label>
@@ -59,20 +114,7 @@
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
-    <b-row class="my-1">
-    <b-col sm="4">
-      <label for="input-none">Number of devices:</label>
-    </b-col>
-    <b-col sm="5">
-           <b-form-input></b-form-input>
-    <div class="mt-3"> <strong></strong></div>
-    </b-col>
-  </b-row>
-  <div id="file">
-    <img v-bind:src="imagePreview">
-    <input type="file" name="" id="file-field" value="Click" v-on:change="updatePreview">
-     
-  </div>
+
 
    <div id="add"> 
      <router-link to="/about"><b-button  pill variant="info" >ADD</b-button></router-link> 
@@ -98,7 +140,7 @@ export default {
           { value: 'b', text: 'B' },
            { value: 'c', text: 'C' },
           // { value: { C: '3PO' }, text: 'This is an option with object value' },
-          // { value: 'd', text: 'This one is disabled', disabled: true }
+          { value: 'd', text: 'This one is disabled', disabled: true }
         ]
    
     };

@@ -1,7 +1,7 @@
   
-<template>
+<template >
 
-  <div  id="app">
+  <div  id="app" >
 
     <div id="nav">
 
@@ -70,14 +70,16 @@
 <router-view/>
 
     <div>
-      <b-card no-body id="tabs" >
-        <b-tabs   pills card vertical nav-wrapper-class="w-10">
+      <b-card  class="a"  >
+        <b-tabs pills card vertical nav-wrapper-class="w-10" active-nav-item-class="font-weight-bold text-light" >
+          <b-tab  title="DEVICES" disabled > <About/></b-tab>
 
-
-          <b-tab title=" ALL DEVICES"> <About/></b-tab>
+          <b-tab title=" ALL DEVICES" > <About/></b-tab>
         
-          <b-tab title="ADD DEVICE"><Table/></b-tab>
-          
+          <b-tab title="ADD DEVICE"><Add/></b-tab>
+          <b-tab title=" IMPORT DEVICE"><Table/></b-tab>
+          <b-tab title="DEVICES" disabled> <About/></b-tab>
+        
         </b-tabs>
       </b-card>
     </div>
@@ -89,10 +91,11 @@
 import axios from 'axios'
 import Table from '@/components/Table'
 import About from '@/components/About'
+import Add from '@/components/Add'
 
 export default {
   components:{
-    Table , About
+    Table , About ,Add
   },
   data(){
     return{
@@ -115,7 +118,9 @@ export default {
 <style>
 
 #nav {
-        background: linear-gradient(to top left, #6600cc 0%, #333399 100%);
+        /* background: linear-gradient(to top left, #6600cc 0%, #333399 100%); */
+          /* background:#7C5083; */
+          background-image: linear-gradient(135deg,#667eea,#764ba2);
 
 }
 #round-button {
@@ -142,6 +147,14 @@ font-weight:bold;
 #bar{
   height:588px;
    width: 150px;
+}
+#tabs{
+  background-image: linear-gradient(135deg,#667eea,#764ba2);
+}
+.a {
+
+  background-color:	#667eea, !important;
+
 }
 
 </style>
