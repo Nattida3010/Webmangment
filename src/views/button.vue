@@ -1,34 +1,32 @@
 <template>
-
-  <b-jumbotron>
-
-       <div>
-       <img v-bind:src="imagePreview">
-    
-    <input type="file" name="" id="file-field" value="Click" v-on:change="updatePreview">
-
+  <div style="text-align:center;" >
+    <h1>Export JSON to Excel</h1>
+    <button @click="onExport" >Export</button> <!-- เพิ่มปุ่ม Export -->
   </div>
-  <div>
-    <b-form-select v-model="selected" :options="options"></b-form-select>
-    <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
-  </div>
- 
-  </b-jumbotron>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        selected: null,
-        options: [
-          { value: null, text: 'Please select some item' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Default Selected Option' },
-          { value: 'c', text: 'This is another option' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ]
-      }
+import XLSX from 'xlsx' // import xlsx
+export default {
+  name: 'app',
+  data(){
+    return {
+      // ข้อมูล JSON ทีต้องการ Export
+      json : [
+        { name: 'Dady', age: '21' },
+        { name: 'Jonh', age: '25' },
+        { name: 'James', age: '17' },
+      ]
     }
+  },
+  methods: {
+    // เมื่อกดปุ่มจะทำการสร้างไฟล์ xcel ด้วย xlsx
+    onExport() {
+      const dataWS = XLSX.utils.json_to_sheet(this.json)
+      const wb = XLSX.utils.book_new()
+      XLSX.utils.book_append_sheet(wb, dataWS)
+      XLSX.writeFile(wb,'export.xlsx')
+    },
   }
+}
 </script>

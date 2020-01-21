@@ -4,6 +4,9 @@
 
   <b-jumbotron>
     <div class="container" align="center" id="jum">
+      <div id="export">
+    <b-button @click="onExport" >Export</b-button> <!-- เพิ่มปุ่ม Export -->
+    </div>
  <b-row class="my-1">
     <b-col sm="4">
       <label for="input-none">PlatForm Name:</label>
@@ -70,8 +73,7 @@
   </b-row>
   <div id="file">
     <img v-bind:src="imagePreview">
-    <input type="file" name="" id="file-field" value="Click" v-on:change="updatePreview">
-     
+   <input type="file" name="" id="file-field" value="Click" v-on:change="updatePreview">
   </div>
 
    <div id="add"> 
@@ -85,7 +87,7 @@
 
 
 <script>
-
+import XLSX from 'xlsx' // import xlsx
 export default {
 
   data() {
@@ -99,7 +101,11 @@ export default {
            { value: 'c', text: 'C' },
           // { value: { C: '3PO' }, text: 'This is an option with object value' },
           // { value: 'd', text: 'This one is disabled', disabled: true }
-        ]
+        ],
+         json : [
+        { Gaetway: '',Application: '',IMEI: '' ,Serail_Nimber: '',IMSI: '',Telephone: '',Model_Brand: '' ,Model_Name: '',Firmware: ''  },
+        
+      ]
    
     };
   },
@@ -119,7 +125,12 @@ export default {
       reader.readAsDataURL(files[0])
       // console.log(reader.readAsDataURL(files[0]))
     },
-   
+    onExport() {
+      const dataWS = XLSX.utils.json_to_sheet(this.json)
+      const wb = XLSX.utils.book_new()
+      XLSX.utils.book_append_sheet(wb, dataWS)
+      XLSX.writeFile(wb,'export.xlsx')
+    },
   }
 };
 </script>
@@ -133,6 +144,10 @@ export default {
 }
 #add{
  margin-left: 40%;
+  
+}
+#export{
+ margin-left: 70%;
   
 }
 </style>
