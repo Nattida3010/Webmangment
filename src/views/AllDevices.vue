@@ -6,7 +6,11 @@
     <div id="nav">
 
      <b-navbar toggleable="lg" type="dark" >
-        <b-navbar-brand   id="round-button"></b-navbar-brand>
+   
+        <b-navbar-brand > 
+          <b-img :src="require('../img/modules.png')" v-bind="mainProps"
+             rounded="circle"  class="d-inline-block align-top" style="width:50px;height:50px;">
+          </b-img></b-navbar-brand>
           <h6 id="h6">Device Management</h6>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
@@ -69,13 +73,11 @@
 </div>
 <router-view/>
 
-    <div>
-      <b-card  class="a"  >
+    <div class="card-header h-100">
+      <b-card  class="a"  type="dark" >
         <b-tabs pills card vertical nav-wrapper-class="w-10" active-nav-item-class="font-weight-bold text-light" >
           <b-tab  title="DEVICES" disabled > <About/></b-tab>
-
           <b-tab title=" ALL DEVICES" > <About/></b-tab>
-        
           <b-tab title="ADD DEVICE"><Add/></b-tab>
           <b-tab title=" IMPORT DEVICE"><Table/></b-tab>
           <b-tab title="DEVICES" disabled> <About/></b-tab>
@@ -107,7 +109,7 @@ export default {
       async test(){
         let res = await axios.get("https://localhost:44362/student/NameMethod2")
         this.info = res.data.data;
-        console.log(this.info,"dsdsdsdsdsd");
+        console.log(this.info,"test");
       },
     
 },
@@ -120,7 +122,13 @@ export default {
 #nav {
         /* background: linear-gradient(to top left, #6600cc 0%, #333399 100%); */
           /* background:#7C5083; */
-          background-image: linear-gradient(135deg,#667eea,#764ba2);
+          /* background-image: linear-gradient(135deg,#667eea,#764ba2); */
+            background: linear-gradient(
+            115deg,
+            rgba(86, 216, 228, 1) 10%,
+            rgba(159, 1, 234, 1) 90%
+          );
+                  
 
 }
 #round-button {

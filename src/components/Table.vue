@@ -2,14 +2,18 @@
 <template>
   
 
-  <b-jumbotron>
+  <b-jumbotron style="background-image: linear-gradient(#FFFFFF,#D7E1EC);" >
     <div class="container" align="center" id="jum">
       <div id="export">
-    <b-button @click="onExport" >Export</b-button> <!-- เพิ่มปุ่ม Export -->
-    </div>
+    <b-button @click="onExport" pill  variant="info"  >Export <b-img :src="require('../img/export.png')" v-bind="mainProps"
+  style="width:20px;height:20px;"> </b-img> </b-button>
+     
+      </div>
+ 
+      <label id="text-req" >* indicated a required field</label>
  <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">PlatForm Name:</label>
+      <label for="input-none" >PlatForm Name*:</label>
     </b-col>
     <b-col sm="5">
        <b-form-select v-model="selected" :options="options"></b-form-select>
@@ -17,18 +21,18 @@
      <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
-    <b-row class="my-1">
+   <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Application Name:</label>
+      <label for="input-none">Application Name*:</label>
     </b-col>
     <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
+           <b-form-input></b-form-input>
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
     <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Manufacturer Name:</label>
+      <label for="input-none">Manufacturer Name*:</label>
     </b-col>
     <b-col sm="5">
        <b-form-select v-model="selected" :options="options"></b-form-select>
@@ -64,7 +68,7 @@
   </b-row>
     <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Number of devices:</label>
+      <label for="input-none">Number of devices*:</label>
     </b-col>
     <b-col sm="5">
            <b-form-input></b-form-input>
@@ -76,8 +80,9 @@
    <input type="file" name="" id="file-field" value="Click" v-on:change="updatePreview">
   </div>
 
-   <div id="add"> 
-     <router-link to="/about"><b-button  pill variant="info" >ADD</b-button></router-link> 
+ <div id="add"> 
+     <router-link to="/about"><b-button  pill variant="success" >Import<b-img :src="require('../img/import.png')" v-bind="mainProps"
+  style="width:20px;height:20px;"> </b-img></b-button></router-link> 
   </div>
     <!-- <input name="image" type="file" id="file-field" v-on:change="updatePreview" style="display: none;"> -->
     </div>
@@ -95,7 +100,7 @@ export default {
       imagePreview: "",
      selected: null,
         options: [
-          { value: null, text: 'Please select an option' },
+          { value: null, text: 'Please select an option', disabled: true  },
           { value: 'a', text: 'A' },
           { value: 'b', text: 'B' },
            { value: 'c', text: 'C' },
@@ -103,7 +108,7 @@ export default {
           // { value: 'd', text: 'This one is disabled', disabled: true }
         ],
          json : [
-        { Gaetway: '',Application: '',IMEI: '' ,Serail_Nimber: '',IMSI: '',Telephone: '',Model_Brand: '' ,Model_Name: '',Firmware: ''  },
+        { Gaetway: '',Application: '',IMEI: '' ,Serail_number: '',IMSI: '',Telephone: '',Model_Name:'' ,Model_Brand: '',Firmware: ''  },
         
       ]
    
@@ -137,6 +142,7 @@ export default {
 <style>
 #jum{
   margin-left: 5%;
+ 
 }
 #file{
     margin-right: 15%;
@@ -148,6 +154,11 @@ export default {
 }
 #export{
  margin-left: 70%;
-  
+ 
+}
+#text-req{
+  margin-right: 75%;
+  margin-bottom: 3%;
+  color: red;
 }
 </style>

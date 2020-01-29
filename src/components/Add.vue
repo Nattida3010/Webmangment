@@ -1,12 +1,13 @@
 
 <template>
   
-
-  <b-jumbotron>
+<!-- style=" box-shadow: 10px 10px 5px grey;" -->
+  <b-jumbotron  style="background-image: linear-gradient(#FFFFFF,#D7E1EC);" >
     <div class="container" align="center" id="jum">
+        <label id="text-req" >* indicated a required field</label>
  <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">PlatForm Name:</label>
+      <label for="input-none">PlatForm Name*:</label>
     </b-col>
     <b-col sm="5">
        <b-form-select v-model="selected" :options="options"></b-form-select>
@@ -14,18 +15,9 @@
      <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
-    <b-row class="my-1">
+        <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Application Name:</label>
-    </b-col>
-    <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
-    <div class="mt-3"> <strong></strong></div>
-    </b-col>
-  </b-row>
-      <b-row class="my-1">
-    <b-col sm="4">
-      <label for="input-none">IMEI :</label>
+      <label for="input-none">Application Name*:</label>
     </b-col>
     <b-col sm="5">
            <b-form-input></b-form-input>
@@ -34,7 +26,16 @@
   </b-row>
       <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Serial number:</label>
+      <label for="input-none">IMEI* :</label>
+    </b-col>
+    <b-col sm="5">
+           <b-form-input></b-form-input>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+      <b-row class="my-1">
+    <b-col sm="4">
+      <label for="input-none">Serial number*:</label>
     </b-col>
     <b-col sm="5">
            <b-form-input></b-form-input>
@@ -43,7 +44,7 @@
   </b-row>
     <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Manufacturer Name:</label>
+      <label for="input-none">Manufacturer Name*:</label>
     </b-col>
     <b-col sm="5">
        <b-form-select v-model="selected" :options="options"></b-form-select>
@@ -52,7 +53,7 @@
   </b-row>
    <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Model Name:</label>
+      <label for="input-none">Model Name*:</label>
     </b-col>
     <b-col sm="5">
        <b-form-select v-model="selected" :options="options"></b-form-select>
@@ -61,7 +62,7 @@
   </b-row>
      <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Model Band:</label>
+      <label for="input-none">Model Band*:</label>
     </b-col>
     <b-col sm="5">
        <b-form-select v-model="selected" :options="options"></b-form-select>
@@ -79,7 +80,7 @@
   </b-row>
         <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">IMST:</label>
+      <label for="input-none">IMSI:</label>
     </b-col>
     <b-col sm="5">
            <b-form-input></b-form-input>
@@ -117,7 +118,7 @@
 
 
    <div id="add"> 
-     <router-link to="/about"><b-button  pill variant="info" >ADD</b-button></router-link> 
+     <router-link to="/about"><b-button  pill variant="success" >ADD </b-button></router-link> 
   </div>
     <!-- <input name="image" type="file" id="file-field" v-on:change="updatePreview" style="display: none;"> -->
     </div>
@@ -134,15 +135,14 @@ export default {
     return {
       imagePreview: "",
      selected: null,
-        options: [
-          { value: null, text: 'Please select an option' },
+     options: [
+          { value: null, text: 'Please select an option', disabled: true  },
           { value: 'a', text: 'A' },
           { value: 'b', text: 'B' },
            { value: 'c', text: 'C' },
           // { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
+          // { value: 'd', text: 'This one is disabled', disabled: true }
         ]
-   
     };
   },
   methods: {
@@ -171,10 +171,15 @@ export default {
 }
 #file{
     margin-right: 15%;
-      margin-top: 3%;
+    margin-top: 3%;
 }
 #add{
  margin-left: 40%;
   
+}
+#text-req{
+  margin-right: 75%;
+  margin-bottom: 3%;
+  color: red;
 }
 </style>

@@ -12,8 +12,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import axios from 'axios'
 import VueSimpleAlert from "vue-simple-alert";
+import Slider from '@jeremyhamm/vue-slider'
 
-
+Vue.use(Slider)
 Vue.use(VueSimpleAlert);
 Vue.prototype.$http = axios
 Vue.use(BootstrapVue)

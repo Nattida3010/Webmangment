@@ -3,16 +3,17 @@
 <div  id="All" class="container" align="center" >
   <div>
   <b-jumbotron id = "jumhead" >
+   
     <div id="bt-add"> 
-      <b-button  pill variant="info" >ADD</b-button>
+      <b-button  pill variant="success" >ADD</b-button>
   </div>
   <b-row >
     <b-col md="6" class="my-2"  id="search"   >
       <b-form-group horizontal  class="mb-0" >
-        <b-input-group id="input" > 
+        <b-input-group id="input"  > 
           <b-form-input v-model="filter" placeholder="Type to Search" />
           <b-input-group-append>
-            <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+            <b-btn :disabled="!filter" @click="filter = ''" variant="primary" >Clear</b-btn>
           </b-input-group-append>
         </b-input-group>
       </b-form-group>
@@ -239,13 +240,15 @@
         }
         #search{
         margin-left:15%;
+        margin-bottom:10%;
       
         }
         #input{
-        margin-bottom:2%;
+        margin-bottom:30%;
+        margin-left:15%;
+  
         }
         #bt-add{
-        /* margin-bottom:3%; */
         margin-left:80%;
         }
 
@@ -255,23 +258,25 @@
 
         #jumhead{
             /* background-image: linear-gradient(135deg,#83a4d4,#b6fbff); */
-          /* background-image: url("/img/jum.jpg"); */
+          /* background-image: url("/img/jum.jpg"); *
           /* background-image: linear-gradient(135deg,#667eea,#764ba2); */
           height: 200px;
           background-position: center;
-        
+          background-image: linear-gradient(#FFFFFF,#D7E1EC);
           background-size: cover;
           position: relative;
+      
         }
 
         #jumbody{
            /* background-image: url("/img/jum.jpg"); */
           margin-top:2%;
-       
+        background-image: linear-gradient(#FFFFFF,#D7E1EC);
           background-position: center;
         
           background-size: cover;
           position: relative;
+  
         }
 
      

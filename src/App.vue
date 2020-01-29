@@ -15,6 +15,8 @@ export default {
 
 html, body {
   font-family: 'Montserrat', sans-serif;
+  
+
 }
 
 #app {
