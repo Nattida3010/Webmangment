@@ -7,17 +7,17 @@
         <label id="text-req" >* indicated a required field</label>
  <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">PlatForm Name*:</label>
+      <label  >PlatForm Name*:</label>
     </b-col>
     <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
+       <b-form-select v-model="selected1" :options="platForm"></b-form-select>
     <!-- <div class="mt-3"> <strong>{{ selected }}</strong></div> -->
      <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
         <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Application Name*:</label>
+      <label>Application Name*:</label>
     </b-col>
     <b-col sm="5">
            <b-form-input></b-form-input>
@@ -26,7 +26,7 @@
   </b-row>
       <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">IMEI* :</label>
+      <label >IMEI* :</label>
     </b-col>
     <b-col sm="5">
            <b-form-input></b-form-input>
@@ -35,83 +35,82 @@
   </b-row>
       <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Serial number*:</label>
+      <label >Serial number*:</label>
     </b-col>
     <b-col sm="5">
            <b-form-input></b-form-input>
-    <div class="mt-3"> <strong></strong></div>
-    </b-col>
-  </b-row>
-    <b-row class="my-1">
-    <b-col sm="4">
-      <label for="input-none">Manufacturer Name*:</label>
-    </b-col>
-    <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
-    <div class="mt-3"> <strong></strong></div>
-    </b-col>
-  </b-row>
-   <b-row class="my-1">
-    <b-col sm="4">
-      <label for="input-none">Model Name*:</label>
-    </b-col>
-    <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
-    <div class="mt-3"> <strong></strong></div>
-    </b-col>
-  </b-row>
-     <b-row class="my-1">
-    <b-col sm="4">
-      <label for="input-none">Model Band*:</label>
-    </b-col>
-    <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
-    <div class="mt-3"> <strong></strong></div>
-    </b-col>
-  </b-row>
-     <b-row class="my-1">
-    <b-col sm="4">
-      <label for="input-none">Communication Media Type:</label>
-    </b-col>
-    <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
-    <div class="mt-3"> <strong></strong></div>
-    </b-col>
-  </b-row>
-        <b-row class="my-1">
-    <b-col sm="4">
-      <label for="input-none">IMSI:</label>
-    </b-col>
-    <b-col sm="5">
-           <b-form-input></b-form-input>
-    <div class="mt-3"> <strong></strong></div>
-    </b-col>
-  </b-row>
-      <b-row class="my-1">
-    <b-col sm="4">
-      <label for="input-none">Telephone number:</label>
-    </b-col>
-    <b-col sm="5">
-           <b-form-input></b-form-input>
-    <div class="mt-3"> <strong></strong></div>
-    </b-col>
-  </b-row>
- 
- <b-row class="my-1">
-    <b-col sm="4">
-      <label for="input-none">Sim Type:</label>
-    </b-col>
-    <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
   <b-row class="my-1">
     <b-col sm="4">
-      <label for="input-none">Operter:</label>
+      <label>Manufacturer Name*:</label>
     </b-col>
     <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
+       <b-form-select v-model="selected2" :options="manufacturer"></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+   <b-row class="my-1">
+    <b-col sm="4">
+      <label>Model Name*:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="selected3" :options="modelname"></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+     <b-row class="my-1">
+    <b-col sm="4">
+      <label>Model Band*:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="selected4" :options="modelband"></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+      <b-row class="my-1">
+    <b-col sm="4">
+      <label >Communication Media Type:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="selected5" :options="communication"></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+        <b-row class="my-1">
+    <b-col sm="4">
+      <label >IMSI:</label>
+    </b-col>
+    <b-col sm="5">
+           <b-form-input></b-form-input>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+      <b-row class="my-1">
+    <b-col sm="4">
+      <label >Telephone number:</label>
+    </b-col>
+    <b-col sm="5">
+           <b-form-input></b-form-input>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+ <b-row class="my-1">
+    <b-col sm="4">
+      <label >Sim Type:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="selected6" :options="sim"></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+ <b-row class="my-1">
+    <b-col sm="4">
+      <label >Operter:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="selected7" :options="operter"></b-form-select>
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
@@ -134,35 +133,59 @@ export default {
   data() {
     return {
       imagePreview: "",
-     selected: null,
-     options: [
+      selected1: null,
+      selected2: null,
+      selected3: null,
+      selected4: null,
+      selected5: null,
+      selected6: null,
+      selected7: null,
+        platForm: [
           { value: null, text: 'Please select an option', disabled: true  },
-          { value: 'a', text: 'A' },
-          { value: 'b', text: 'B' },
-           { value: 'c', text: 'C' },
-          // { value: { C: '3PO' }, text: 'This is an option with object value' },
-          // { value: 'd', text: 'This one is disabled', disabled: true }
-        ]
+          { value: 'Ocean Connect', text: 'Ocean Connect' },
+        ],
+        manufacturer: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'Arrow Tech Co.,Ltd', text: 'Arrow Tech Co.,Ltd' },
+  
+        ],
+        communication: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: '4G', text: '4G' },
+          { value: '3G', text: '3G' },
+          { value: 'NB-IOT', text: 'NB-IOT' },
+          { value: 'LORA', text: 'LORA' },
+        ],
+         sim: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'eSIM', text: 'eSIM' },
+          { value: 'Micro SIM', text: 'Micro SIM' },
+  
+        ],
+         operter: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'AIS', text: 'AIS' },
+          { value: 'True Move', text: 'True Move' },
+          { value: 'Dtac', text: 'Dtac' },
+        ],
+          modelband: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'Huawei', text: 'Huawei' },
+          { value: 'SUMSUNG', text: 'SUMSUNG' },
+          { value: 'Huawei', text: 'Huawei' },
+          { value: 'Nokia', text: 'Nokia' },
+  
+        ],
+         modelname: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'AIS', text: 'A' },
+          { value: 'True Move', text: 'B' },
+          { value: 'Dtac', text: 'C' },
+          { value: 'Dtac', text: 'D' },
+        ],
     };
   },
-  methods: {
-  Preview(e){
-      document.getElementById('file-field').click()
-      var reader , files = e.target.files
-      if(files.length === 0){
-        console.log('Empty')
-      }
-      reader = new FileReader()
-      reader.onload = (e) =>{
-        // this.imagePreview = e.target.result
-        document.body.style.backgroundImage = 'url(' + e.target.result + ')';
-        console.log(document.body.style.backgroundimage = 'url(' + e.target.result + ')' )
-      }
-      reader.readAsDataURL(files[0])
-      // console.log(reader.readAsDataURL(files[0]))
-    },
-   
-  }
+
 };
 </script>
 <style>

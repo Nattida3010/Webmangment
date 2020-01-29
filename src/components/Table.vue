@@ -16,7 +16,7 @@
       <label for="input-none" >PlatForm Name*:</label>
     </b-col>
     <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
+       <b-form-select v-model="selected" :options="platForm"></b-form-select>
     <!-- <div class="mt-3"> <strong>{{ selected }}</strong></div> -->
      <div class="mt-3"> <strong></strong></div>
     </b-col>
@@ -35,7 +35,7 @@
       <label for="input-none">Manufacturer Name*:</label>
     </b-col>
     <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
+       <b-form-select v-model="selected" :options="manufacturer"></b-form-select>
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
@@ -44,7 +44,7 @@
       <label for="input-none">Communication Media Type:</label>
     </b-col>
     <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
+       <b-form-select v-model="selected" :options="communication"></b-form-select>
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
@@ -53,7 +53,7 @@
       <label for="input-none">Sim Type:</label>
     </b-col>
     <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
+       <b-form-select v-model="selected" :options="sim"></b-form-select>
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
@@ -62,7 +62,7 @@
       <label for="input-none">Operter:</label>
     </b-col>
     <b-col sm="5">
-       <b-form-select v-model="selected" :options="options"></b-form-select>
+       <b-form-select v-model="selected" :options="operter"></b-form-select>
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
@@ -99,13 +99,35 @@ export default {
     return {
       imagePreview: "",
      selected: null,
-        options: [
+        platForm: [
           { value: null, text: 'Please select an option', disabled: true  },
-          { value: 'a', text: 'A' },
-          { value: 'b', text: 'B' },
-           { value: 'c', text: 'C' },
+          { value: 'Ocean Connect', text: 'Ocean Connect' },
           // { value: { C: '3PO' }, text: 'This is an option with object value' },
           // { value: 'd', text: 'This one is disabled', disabled: true }
+        ],
+        manufacturer: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'Arrow Tech Co.,Ltd', text: 'Arrow Tech Co.,Ltd' },
+  
+        ],
+        communication: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: '4G', text: '4G' },
+          { value: '3G', text: '3G' },
+          { value: 'NB-IOT', text: 'NB-IOT' },
+          { value: 'LORA', text: 'LORA' },
+        ],
+         sim: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'eSIM', text: 'eSIM' },
+          { value: 'Micro SIM', text: 'Micro SIM' },
+  
+        ],
+         operter: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'AIS', text: 'AIS' },
+          { value: 'True Move', text: 'True Move' },
+          { value: 'Dtac', text: 'Dtac' },
         ],
          json : [
         { Gaetway: '',Application: '',IMEI: '' ,Serail_number: '',IMSI: '',Telephone: '',Model_Name:'' ,Model_Brand: '',Firmware: ''  },
