@@ -4,14 +4,14 @@
   <div>
   <b-jumbotron id = "jumhead" >
    
-    <div id="bt-add"> 
+    <!-- <div id="bt-add"> 
       <b-button  pill variant="success" >ADD</b-button>
-  </div>
+  </div> -->
   <b-row >
     <b-col md="6" class="my-2"  id="search"   >
       <b-form-group horizontal  class="mb-0" >
         <b-input-group id="input"  > 
-          <b-form-input v-model="filter" placeholder="Type to Search" />
+          <b-form-input v-model="filter" placeholder=" Search" />
           <b-input-group-append>
             <b-btn :disabled="!filter" @click="filter = ''" variant="primary" >Clear</b-btn>
           </b-input-group-append>
@@ -41,58 +41,14 @@
           <b-button pill variant="outline-warning" v-on:click="showAlert" >EDIT</b-button>
       </template>
       <template v-slot:cell(VIEW)="row">
-          <b-button   pill variant="outline-warning"   size="sm"
+          <b-button   pill variant="outline-info"   size="sm"
            @click="test( row.item.IMEI, row.item.SerialNumber , row.item.Manufacturer, row.item.NameS,row.item.NameA,row.item.NameI)" 
            class="mr-1">VIEW
           </b-button> 
       </template>
-     
-       <template  v-slot:cell(show_details)="row">
-        <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
-        <b-button  pill variant="outline-info" size="sm" @click.stop="row.toggleDetails">
-          {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-        </b-button>
-      </template>
-
+    
   
-      
-      <template v-slot:row-details="row">
-        <b-card>
-
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right"><b>IMEI :</b></b-col>
-            <b-col>{{ row.item.IMEI }}</b-col>
-          </b-row>
-
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right"><b> SerialNumber : </b></b-col>
-            <b-col>{{ row.item.SerialNumber }}</b-col>
-          </b-row>
-
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right"><b> Status : </b></b-col>
-            <b-col>{{ row.item.NameS}}</b-col>
-          </b-row>
-
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right"><b>Manufacturer :</b></b-col>
-            <b-col>{{ row.item.Manufacturer }}</b-col>
-          </b-row>
-
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right"><b> Application Platform Name : </b></b-col>
-            <b-col>{{ row.item.NameA}}</b-col>
-          </b-row>
-
-          <b-row class="mb-2">
-            <b-col sm="3" class="text-sm-right"><b> IOT Platform Name : </b></b-col>
-            <b-col>{{ row.item.NameI}}</b-col>
-          </b-row>
-
-          <b-button size="sm" @click="row.toggleDetails">Hide Details</b-button>
-
-        </b-card>
-      </template>
+  
   </b-table >  
       <!-- Info modal -->
     <!-- <b-modal  :id="infoModal.id" :title= "infoModal.id" ok-only @hide="resetInfoModal"> -->
@@ -172,7 +128,6 @@
           { key: 'NameS', label: 'Status',sortable: true, },  
           { key: 'DETELE', },      
           { key: 'EDIT', },
-          {key:"show_details",label: 'DETAIL'},
           {key:"VIEW"}
         
             ], 

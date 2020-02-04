@@ -76,11 +76,12 @@
     <div class="card-header h-100">
       <b-card  class="a"  type="dark" >
         <b-tabs pills card vertical nav-wrapper-class="w-10" active-nav-item-class="font-weight-bold text-light" >
-          <b-tab  title="DEVICES" disabled > <About/></b-tab>
+          <b-tab  title="DEVICES " disabled > <About/></b-tab>
           <b-tab title=" ALL DEVICES" > <About/></b-tab>
           <b-tab title="ADD DEVICE"><Add/></b-tab>
           <b-tab title=" IMPORT DEVICE"><Table/></b-tab>
-          <b-tab title="DEVICES" disabled> <About/></b-tab>
+          <b-tab title="SIM" disabled> <About/></b-tab>
+          <b-tab title="CONTRACT" disabled> <About/></b-tab>
         
         </b-tabs>
       </b-card>
@@ -120,17 +121,10 @@ export default {
 <style>
 
 #nav {
-        /* background: linear-gradient(to top left, #6600cc 0%, #333399 100%); */
-          /* background:#7C5083; */
-          /* background-image: linear-gradient(135deg,#667eea,#764ba2); */
-            background: linear-gradient(
-            115deg,
-            rgba(86, 216, 228, 1) 10%,
-            rgba(159, 1, 234, 1) 90%
-          );
-                  
-
+        
+   background-image: linear-gradient(135deg,#667eea,#764ba2);
 }
+
 #round-button {
 display:block;
 width:50px;
@@ -157,7 +151,7 @@ font-weight:bold;
    width: 150px;
 }
 #tabs{
-  background-image: linear-gradient(135deg,#667eea,#764ba2);
+    background-image: #667eea;
 }
 .a {
 

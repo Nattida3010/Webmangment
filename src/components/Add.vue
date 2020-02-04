@@ -5,6 +5,7 @@
   <b-jumbotron  style="background-image: linear-gradient(#FFFFFF,#D7E1EC);" >
     <div class="container" align="center" id="jum">
         <label id="text-req" >* indicated a required field</label>
+          
  <b-row class="my-1">
     <b-col sm="4">
       <label  >PlatForm Name*:</label>
@@ -117,9 +118,11 @@
 
 
    <div id="add"> 
-     <router-link to="/about"><b-button  pill variant="success" >ADD </b-button></router-link> 
+     <router-link to="/AllDevices"><b-button  pill variant="success" >ADD </b-button></router-link> 
   </div>
+   <b-button type="submit" variant="primary">Submit</b-button>
     <!-- <input name="image" type="file" id="file-field" v-on:change="updatePreview" style="display: none;"> -->
+     
     </div>
     </b-jumbotron>
     
