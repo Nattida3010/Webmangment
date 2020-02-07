@@ -6,7 +6,7 @@
                     label-for="exampleInput1">
         <b-form-input id="exampleInput1"
                       type="email"
-                      v-model="form.Email"
+                      v-model="TestEmail"
                       required
                       placeholder="">
         </b-form-input>
@@ -16,75 +16,11 @@
                     label-for="exampleInput2">
         <b-form-input id="exampleInput2"
                       type="text"
-                      v-model="form.Name"
+                      v-model="TestName"
                       required
                       placeholder="">
         </b-form-input>
       </b-form-group>
-      <!-- <b-form-group id="exampleInputGroup3"
-                    label="InsertManufacturer:"
-                    label-for="exampleInput3">
-        <b-form-input id="exampleInput"
-                      type="text"
-                      v-model="form.Manufacturer"
-                      required
-                      placeholder="Harry Tech Co.,Ltd">
-        </b-form-input>
-      </b-form-group>
-      <b-form-group id="exampleInputGroup4"
-                    label="InsertIoTPlatID:"
-                    label-for="exampleInput4">
-        <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.IoTPlatID"
-                      required
-                      placeholder="IOT5896">
-        </b-form-input>
-       </b-form-group>
-        <b-form-group id="exampleInputGroup5"
-                    label="nsertAppPlatID :"
-                    label-for="exampleInput5">
-        <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.AppPlatID"
-                      required
-                      placeholder="AP4584">
-        </b-form-input>
-       </b-form-group>
-        <b-form-group id="exampleInputGroup6"
-                    label="InsertStatusID:"
-                    label-for="exampleInput6">
-        <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.StatusID"
-                      required
-                      placeholder="S4625">
-        </b-form-input>
-       </b-form-group>
-
- <b-form-group id="exampleInputGroup7"
-                    label="InsertModelID:"
-                    label-for="exampleInput7">
-        <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.ModelID"
-                      required
-                      placeholder="M1455">
-        </b-form-input>
-       </b-form-group>
- <b-form-group id="exampleInputGroup8"
-                    label="InsertCmTypeID:"
-                    label-for="exampleInput4">
-        <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.TypeID" 
-                      required
-                      placeholder="CT579">
-        </b-form-input>
-       </b-form-group> -->
-
-
-
       
 
      <b-button type="submit" variant="primary">Submit</b-button>
@@ -96,7 +32,6 @@
 </template>
 <script>
 
-
 export default {
   name: 'app',
   components: {
@@ -105,8 +40,8 @@ export default {
   data () {
     return {
       form: {
-       Email: '',
-       Name : '',
+       TestEmail: '',
+       TestName : '',
       },
     }
   },
@@ -114,21 +49,30 @@ export default {
     onSubmit (evt) {
       evt.preventDefault();
        alert(JSON.stringify(this.form));
+          // const  sendData = {
+          // email  :this.form.Email,this.form.Email,
+          // name  : this.form.Name
+          // }
 
-    
-          const  sendData = {
-          Email  :this.form.Email,
-          Name  : this.form.Name
-          }
-           this.axios.post("http://localhost:44322/insert/data",sendData ,{
-                headers: {
-                  "Access-Control-Allow-Origin": "*"
-                }
-          })
-           console.log(JSON.stringify("test"));
-       
-      
-    },
+
+          // send a POST request
+          this.axios({
+            method: 'post',
+            url: 'https://localhost:44322/insert/data',
+             data: {
+                         TestName: this.TestName,
+                         TestEmail: this.TestEmail
+                    }
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        // console.log(JSON.stringify(values));
+        },
     
   }
 }

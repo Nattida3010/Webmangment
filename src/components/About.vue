@@ -1,12 +1,8 @@
 <template  >  
 
 <div  id="All" class="container" align="center" >
-  <div>
-  <b-jumbotron id = "jumhead" >
-   
-    <!-- <div id="bt-add"> 
-      <b-button  pill variant="success" >ADD</b-button>
-  </div> -->
+<div>
+<b-jumbotron  id="jumbody">
   <b-row >
     <b-col md="6" class="my-2"  id="search"   >
       <b-form-group horizontal  class="mb-0" >
@@ -19,12 +15,7 @@
       </b-form-group>
     </b-col>
   </b-row>
-    
-</b-jumbotron> 
-</div>
 
-<div>
-<b-jumbotron  id="jumbody">
   <b-table 
           striped hover 
           :items="info" 
@@ -50,8 +41,6 @@
   
   
   </b-table >  
-      <!-- Info modal -->
-    <!-- <b-modal  :id="infoModal.id" :title= "infoModal.id" ok-only @hide="resetInfoModal"> -->
         <b-modal  
           title="Device Detail"
           :id="infoModal.id" 
@@ -89,6 +78,7 @@
   </div>  
 </b-jumbotron> 
 </div>
+
 </div>
 
 </template>
@@ -98,13 +88,10 @@
     export default {
   data() {
     return {
+   
       info: {
          IMEI: "",
          SerialNumber: "",
-        //  ModelID:'',
-        //  Manufacturer: "", 
-        //  IoTPlatID:"",
-        //  AppPlatID: "",
          NameS:"",
       },
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
@@ -118,13 +105,10 @@
        pageIndex:1,
        filter: null,
        fields: [
-          // { key: 'NO', sortable: true },
+      
           { key: 'IMEI',  sortable: true },
           { key: 'SerialNumber', sortable: false },
-          // { key: 'ModelID', sortable: true },
-          // { key: 'Manufacturer',sortable: true,},
-          // { key: 'IoTPlatID',  sortable: true,},
-          // { key: 'AppPlatID',  sortable: true,  },
+
           { key: 'NameS', label: 'Status',sortable: true, },  
           { key: 'DETELE', },      
           { key: 'EDIT', },
@@ -145,12 +129,13 @@
               mounted() {
                 var self = this;
                 axios
-                  .get("https://localhost:44322/device/deviceJoin")
+                  .get("https://localhost:44322/view/allDevice")
                   .then(function(response) {
                    console.log(JSON.stringify(response.data.data));
                     self.info = response.data;
                   }
               );
+              
            },
             
                methods: {
@@ -165,18 +150,16 @@
                       this.infoModal.NameI = f,
                       this.$root.$emit('bv::show::modal', a,b,c,d,e,f)
                     },
-                    // resetInfoModal() {
-                    //   this.infoModal.title = ''
-                    //   this.infoModal.content = ''
-                    // },
-     
-
                     showAlert(){
                       // Use sweetalret2
                       this.$confirm("Are you sure?").then(() => {
                       //do something...
                       });
-                    }
+                    },
+                    
+    
+
+                    
                   }
               };
 </script>
@@ -211,22 +194,11 @@
           width:50%;
         }
 
-        #jumhead{
-            /* background-image: linear-gradient(135deg,#83a4d4,#b6fbff); */
-          /* background-image: url("/img/jum.jpg"); *
-          /* background-image: linear-gradient(135deg,#667eea,#764ba2); */
-          height: 200px;
-          background-position: center;
-          background-image: linear-gradient(#FFFFFF,#D7E1EC);
-          background-size: cover;
-          position: relative;
-      
-        }
 
         #jumbody{
            /* background-image: url("/img/jum.jpg"); */
           margin-top:2%;
-        background-image: linear-gradient(#FFFFFF,#D7E1EC);
+           background-image: linear-gradient(to right, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);
           background-position: center;
         
           background-size: cover;

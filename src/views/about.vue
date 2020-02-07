@@ -105,7 +105,7 @@
           :body-text-variant="bodyTextVariant"
           :footer-bg-variant="footerBgVariant"
           :footer-text-variant="footerTextVariant" 
-          ok-only @hide="resetInfoModal">
+          ok-only>
               <pre><b> IMEI :</b>        {{infoModal.id }}</pre> 
               <pre><b> SerialNumber :</b>{{infoModal.title }}</pre> 
               <pre><b> Status : </b>     {{ infoModal.NameS }}</pre>

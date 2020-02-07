@@ -8,7 +8,7 @@
      <b-navbar toggleable="lg" type="dark" >
    
         <b-navbar-brand > 
-          <b-img :src="require('../img/modules.png')" v-bind="mainProps"
+          <b-img :src="require('../img/modules.png')"
              rounded="circle"  class="d-inline-block align-top" style="width:50px;height:50px;">
           </b-img></b-navbar-brand>
           <h6 id="h6">Device Management</h6>
@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+
 import Table from '@/components/Table'
 import About from '@/components/About'
 import Add from '@/components/Add'
@@ -99,21 +99,8 @@ import Add from '@/components/Add'
 export default {
   components:{
     Table , About ,Add
-  },
-  data(){
-    return{
-      info: "",
-      // id:""
-    }
-  },
-    methods: {
-      async test(){
-        let res = await axios.get("https://localhost:44362/student/NameMethod2")
-        this.info = res.data.data;
-        console.log(this.info,"test");
-      },
-    
-},
+  }
+
 
 }
 </script>
@@ -121,10 +108,8 @@ export default {
 <style>
 
 #nav {
-        
-   background-image: linear-gradient(135deg,#667eea,#764ba2);
+background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
 }
-
 #round-button {
 display:block;
 width:50px;
@@ -146,17 +131,8 @@ font-weight:bold;
 #nav-collapse{
   margin-left: 5%;
 }
-#bar{
-  height:588px;
-   width: 150px;
-}
-#tabs{
-    background-image: #667eea;
-}
-.a {
 
-  background-color:	#667eea, !important;
 
-}
+
 
 </style>
