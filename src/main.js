@@ -15,10 +15,10 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import VueSimpleAlert from "vue-simple-alert";
+import VueSweetalert2 from 'vue-sweetalert2';
 
 
-
-
+Vue.use(VueSweetalert2);
 Vue.use(VueSimpleAlert);
 Vue.prototype.$http = axios
 Vue.use(BootstrapVue)

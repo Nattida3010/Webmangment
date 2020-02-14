@@ -76,7 +76,7 @@
  
       <b-row class="my-1">
     <b-col sm="4">
-      <label >Communication Media Type:</label>
+      <label >Communication Media Type * :</label>
     </b-col>
     <b-col sm="5">
        <b-form-select v-model="CmTypeID" :options="communication" required ></b-form-select>
@@ -106,7 +106,7 @@
 
    <div id="add"> 
      <!-- <router-link to="/AllDevices"><b-button   pill variant="success" >ADD </b-button></router-link>  -->
-       <b-button   type="submit" pill variant="success" >ADD </b-button>
+       <b-button   type="submit" pill variant="success"  v-on:click="alertDisplay"  >ADD </b-button>
   </div>
     </b-form>
   
@@ -218,7 +218,7 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
-       alert(JSON.stringify(this.form));
+      //  alert(JSON.stringify(this.form));
           // const  sendData = {
           // email  :this.form.Email,this.form.Email,
           // name  : this.form.Name
@@ -245,6 +245,7 @@ export default {
                 })
                 .then(function (response) {
                     console.log(response);
+                    //  window.location.reload();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -252,6 +253,11 @@ export default {
 
         // console.log(JSON.stringify(values));
         },
+       alertDisplay() {
+        // $swal function calls SweetAlert into the application with the specified configuration.
+      this.$swal('Success', 'Data Successfully Saved', 'OK',);
+       window.location.reload();
+      }
     
   }
 

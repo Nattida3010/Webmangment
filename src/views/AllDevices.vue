@@ -1,14 +1,14 @@
   
 <template >
 
-  <div  id="app" >
+  <div  id="app"  >
 
-    <div id="nav">
+    <div id="nav"  >
 
-     <b-navbar toggleable="lg" type="dark" >
+     <b-navbar toggleable="lg" type="dark"  >
    
         <b-navbar-brand > 
-          <b-img :src="require('../img/modules.png')"
+          <b-img :src="require('../img/device.png')"
              rounded="circle"  class="d-inline-block align-top" style="width:50px;height:50px;">
           </b-img></b-navbar-brand>
           <h6 id="h6">Device Management</h6>
@@ -73,7 +73,7 @@
 </div>
 <router-view/>
 
-    <div class="card-header h-100">
+    <div class="card-header h-100" >
       <b-card  class="a"  type="dark" >
         <b-tabs pills card vertical nav-wrapper-class="w-10" active-nav-item-class="font-weight-bold text-light" >
           <b-tab  title="DEVICES " disabled > <About/></b-tab>
@@ -108,7 +108,7 @@ export default {
 <style>
 
 #nav {
-background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+background-color: rgb(153, 223, 236) ;
 }
 #round-button {
 display:block;

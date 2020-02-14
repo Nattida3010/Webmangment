@@ -18,22 +18,25 @@
 
   <b-table 
           striped hover 
-          :items="info" 
+          :items ="info" 
           :fields="fields" 
           :filter="filter"
           :per-page ="pageSize"
           :current-page="pageIndex" align="center"   >
 
       <template v-slot:cell(DETELE)="row">
-          <b-button pill variant="outline-danger" v-b-modal.modal-center>DETELE</b-button>
+          <b-button pill variant="outline-info" v-on:click="alertDelete" >DETELE</b-button>
        </template>
 
       <template v-slot:cell(EDIT)="row">
-          <b-button pill variant="outline-warning" v-on:click="showAlert" >EDIT</b-button>
+          <b-button pill variant="outline-info"  >EDIT</b-button>
       </template>
-      <template v-slot:cell(VIEW)="row">
+  
+      <template v-slot:cell(VIEW)="row">             
           <b-button   pill variant="outline-info"   size="sm"
-           @click="test( row.item.IMEI, row.item.SerialNumber , row.item.Manufacturer, row.item.NameS,row.item.NameA,row.item.NameI)" 
+           @click="model( row.item.IMEI, row.item.SerialNumber , row.item.Manufacturer, row.item.statusDevice,
+                        row.item.Firmware,row.item.contractnumber,row.item.GateWay,
+                        row.item.AppPlatID,row.item.Model)" 
            class="mr-1">VIEW
           </b-button> 
       </template>
@@ -50,24 +53,19 @@
           :body-text-variant="bodyTextVariant"
           :footer-bg-variant="footerBgVariant"
           :footer-text-variant="footerTextVariant" 
-          ok-only @hide="resetInfoModal">
+         >
               <pre><b> IMEI :</b>        {{infoModal.id }}</pre> 
-              <pre><b> SerialNumber :</b>{{infoModal.title }}</pre> 
-              <pre><b> Status : </b>     {{ infoModal.NameS }}</pre>
-              <pre><b> Manufacturer :</b>{{infoModal.content}} </pre>
-              <pre><b> Application Platform Name  : </b> {{ infoModal.NameA }}</pre>
-              <pre><b> IOT Platform Name  : </b>   {{infoModal.NameI }}</pre>           
+              <pre><b> SerialNumber :</b>{{infoModal.SerialNumber }}</pre> 
+              <pre><b> Status : </b>     {{ infoModal.statusDevice }}</pre>
+              <pre><b> Model  : </b>   {{infoModal.Model }}</pre>        
+              <pre><b> Manufacturer :</b>{{infoModal.Manufacturer}} </pre>
+              <pre><b> Firmware  : </b> {{ infoModal.Firmware }}</pre>
+              <pre><b> Contractnumber  : </b>{{infoModal.contractnumber }}</pre>
+              <pre><b> GateWay  : </b>   {{infoModal.GateWay }}</pre>    
+               <pre><b> Application  : </b>  {{infoModal.AppPlatID}}</pre>
+                   
          </b-modal>
 
-<div>
-    <b-modal id="modal-center" centered title="Alert">
-        <p class="my-4">Are you sure you want to delete this device?</p>
-    </b-modal>
-
-    <b-modal id="modal-lg" size="lg" title="Large Modal">
-        Hello Large Modal!
-    </b-modal>
-</div>
 
      <b-pagination  align="center" size="md" :total-rows=" info.length"
          v-model="pageIndex" :per-page="pageSize">
@@ -92,7 +90,7 @@
       info: {
          IMEI: "",
          SerialNumber: "",
-         NameS:"",
+         statusDevice:"",
       },
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       headerBgVariant: 'primary',
@@ -108,20 +106,22 @@
       
           { key: 'IMEI',  sortable: true },
           { key: 'SerialNumber', sortable: false },
-
-          { key: 'NameS', label: 'Status',sortable: true, },  
+          { key: 'statusDevice', label: 'Status',sortable: true, },  
           { key: 'DETELE', },      
           { key: 'EDIT', },
-          {key:"VIEW"}
+          { key:"VIEW"}
         
             ], 
            infoModal: {
           id: '',
-          title: '',
-          content: '',
-          NameS:'',
-          NameA: '',
-          NameI:''
+          SerialNumber: '',
+          Manufacturer: '',
+          statusDevice:'',
+          Firmware: '',
+          contractnumber:'',
+          GateWay:'',
+          AppPlatID:'',
+          Model:'',
 
         }
             };
@@ -140,24 +140,45 @@
             
                methods: {
                      // eslint-disable-next-line vue/no-dupe-keys
-                    test(a,b,c,d,e,f) {
+                      model(a,b,c,d,e,f,g,h,i) {
                     // console.log(a,b,c);
                       this.infoModal.id = a,
-                      this.infoModal.title = b ,
-                      this.infoModal.content = c,
-                      this.infoModal.NameS = d,
-                      this.infoModal.NameA = e,
-                      this.infoModal.NameI = f,
-                      this.$root.$emit('bv::show::modal', a,b,c,d,e,f)
+                      this.infoModal.SerialNumber = b ,
+                      this.infoModal.Manufacturer = c,
+                      this.infoModal.statusDevice = d,
+                      this.infoModal.Firmware = e,
+                      this.infoModal.contractnumber = f,
+                      this.infoModal.GateWay = g,
+                      this.infoModal.AppPlatID = h,
+                      this.infoModal.Model = i,
+                      this.$root.$emit('bv::show::modal', a,b,c,d,e,f,g,h,i)
                     },
-                    showAlert(){
-                      // Use sweetalret2
-                      this.$confirm("Are you sure?").then(() => {
-                      //do something...
-                      });
-                    },
-                    
-    
+                    // showAlert(){
+                    //   // Use sweetalret2
+                    //   this.$confirm("Are you sure?").then(() => {
+                    //   //do something...
+                    //   });
+                    // },
+                //   alertDelete() {
+                //   this.$swal({
+                //     title: 'Are you sure?',
+                //     text: 'You can\'t revert your action',
+                //     type: 'warning',
+                //     showCancelButton: true,
+                //     confirmButtonText: 'Yes Delete it!',
+                //     cancelButtonText: 'No, Keep it!',
+                //     showCloseButton: true,
+                //     showLoaderOnConfirm: true
+                //   }).then((result) => {
+                //     if(result.value) {
+                //       this.$swal('Deleted', 'You successfully deleted this file', 'success')
+                //     } else {
+                //       this.$swal('Cancelled', 'Your file is still intact', 'info')
+                //     }
+                //   })
+                // }
+                              
+              
 
                     
                   }
