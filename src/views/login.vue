@@ -2,7 +2,6 @@
 
 <div  id="All" class="container" align="center" >
 <div>
-<b-jumbotron  id="jumbody">
   <b-row >
     <b-col md="6" class="my-2"  id="search"   >
       <b-form-group horizontal  class="mb-0" >
@@ -23,13 +22,12 @@
           :filter="filter"
           :per-page ="pageSize"
           :current-page="pageIndex" align="center"   >
-
       <template v-slot:cell(DETELE)="row">
           <b-button pill variant="outline-info"  @click="deleteData(row.item.IMEI)" >Delete</b-button>
        </template>
 
-      <template v-slot:cell(EDIT)="row">
-          <b-button pill variant="outline-info"  >EDIT</b-button>
+      <template v-slot:cell(EDIT)="">
+          <b-button pill variant="outline-info" v-b-modal.modal-lg >EDIT</b-button>
       </template>
   
       <template v-slot:cell(VIEW)="row">             
@@ -37,13 +35,127 @@
            @click="model( row.item.IMEI, row.item.SerialNumber , row.item.Manufacturer, row.item.statusDevice,
                         row.item.Firmware,row.item.contractnumber,row.item.GateWay,
                         row.item.AppPlatID,row.item.Model)" 
-           class="mr-1">VIEW
-          </b-button> 
+           class="mr-1">VIEW </b-button> 
       </template>
+      
+  </b-table > 
+    <b-modal id="modal-lg" size="lg"   title=" Edit Device Detail"
+          :header-bg-variant="headerBgVariant"
+          :header-text-variant="headerTextVariant"
+          :body-bg-variant="bodyBgVariant"
+          :body-text-variant="bodyTextVariant"
+          :footer-bg-variant="footerBgVariant"
+          :footer-text-variant="footerTextVariant">
     
   
+   <label id="text-req" >* indicated a required field </label>
+    <div class="container" align="center" id="jum">
+       
+   <b-form   >         
+ <b-row class="my-1">
+    <b-col sm="4">
+      <label  >GateWay Name*:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select  v-model="InsertGateWayID" :options="GateWay" required></b-form-select>
+                     
+    <!-- <div class="mt-3"> <strong>{{ selected }}</strong></div> -->
+     <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+        <b-row class="my-1">
+    <b-col sm="4">
+      <label>Application Name*:</label>
+    </b-col>
+    <b-col sm="5">
+            <b-form-select   v-model= "InsertAppID"  :options="Application"  required></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+    <b-row class="my-1">
+    <b-col sm="4">
+      <label >IMEI* :</label>
+    </b-col>
+    <b-col sm="5">
+           <b-form-input   type="text" v-model="infoModal.id" required ></b-form-input>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+      <b-row class="my-1">
+    <b-col sm="4">
+      <label >Serial number*:</label>
+    </b-col>
+    <b-col sm="5">
+             <b-form-input  type="text" v-model="InsertSerialNumber" required ></b-form-input>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+  <b-row class="my-1">
+    <b-col sm="4">
+      <label>Manufacturer Name*:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="InsertManufacturer" :options="manufacturer" required  ></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+     <b-row class="my-1">
+    <b-col sm="4">
+      <label>Firmware*:</label>
+    </b-col>
+    <b-col sm="5">
+      <b-form-select v-model="InsertFirmware" :options="firmware " required  ></b-form-select>
+   
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+   <b-row class="my-1">
+    <b-col sm="4">
+      <label>Model Name*:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="InsertModelID" :options="modelname"   required  ></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+ 
+ 
+      <b-row class="my-1">
+    <b-col sm="4">
+      <label >Communication Media Type * :</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="CmTypeID" :options="communication" required ></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+     <b-row class="my-1">
+    <b-col sm="4">
+      <label > Contractnumber * :</label>
+    </b-col>
+    <b-col sm="5">
+      <b-form-select v-model="contractnumber" :options="contractnum" required  ></b-form-select>
   
-  </b-table >  
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+    <b-row class="my-1">
+    <b-col sm="4">
+      <label > Device status * :</label>
+    </b-col>
+    <b-col sm="5">
+          <b-form-select   type="text" v-model="statusDevice" :options="status" required ></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+     <div style="margin-left : 60%" > 
+    
+       <b-button   type="submit" pill variant="info" >Edit</b-button>
+  </div>
+    </b-form>
+  
+    </div>
+  </b-modal>
         <b-modal  
           title="Device Detail"
           :id="infoModal.id" 
@@ -52,18 +164,43 @@
           :body-bg-variant="bodyBgVariant"
           :body-text-variant="bodyTextVariant"
           :footer-bg-variant="footerBgVariant"
-          :footer-text-variant="footerTextVariant" 
-         >
-              <pre><b> IMEI :</b>        {{infoModal.id }}</pre> 
+          :footer-text-variant="footerTextVariant" >
+               <!-- <input v-model="infoModal.id"> -->
+            <pre>  <b-row class="my-1">
+    <b-col sm="4">
+      <label >IMEI* :</label>
+    </b-col>
+    <b-col sm="5">
+           <b-form-input   type="text" v-model="infoModal.id" required ></b-form-input>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row> </pre> 
+              <!-- <pre><b> IMEI :</b>        {{infoModal.id }}</pre>  -->
               <pre><b> SerialNumber :</b>{{infoModal.SerialNumber }}</pre> 
-              <pre><b> Status : </b>     {{ infoModal.statusDevice }}</pre>
-              <pre><b> Model  : </b>   {{infoModal.Model }}</pre>        
+              <pre>     <b-row class="my-1">
+    <b-col sm="4">
+      <label > Device status * :</label>
+    </b-col>
+    <b-col sm="5">
+          <b-form-select   type="text" v-model="infoModal.statusDevice " :options="status" required ></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+   </b-row>  </pre>
+              <pre>    <b-row class="my-1">
+    <b-col sm="4">
+      <label>Model Name*:</label>
+    </b-col>
+    <b-col sm="5">
+       <b-form-select v-model="infoModal.Model" :options="modelname"   required  ></b-form-select>
+    <div class="mt-3"> <strong></strong></div>
+    </b-col>
+  </b-row>
+</pre>        
               <pre><b> Manufacturer :</b>{{infoModal.Manufacturer}} </pre>
               <pre><b> Firmware  : </b> {{ infoModal.Firmware }}</pre>
               <pre><b> Contractnumber  : </b>{{infoModal.contractnumber }}</pre>
               <pre><b> GateWay  : </b>   {{infoModal.GateWay }}</pre>    
-               <pre><b> Application  : </b>  {{infoModal.AppPlatID}}</pre>
-                   
+               <pre><b> Application  : </b>  {{infoModal.AppPlatID}}</pre>        
          </b-modal>
 
 
@@ -74,7 +211,7 @@
   <div align="center"  >
       CurrentPage: {{pageIndex}}
   </div>  
-</b-jumbotron> 
+
 </div>
 
 </div>
@@ -86,12 +223,84 @@
     export default {
   data() {
     return {
-   
+   //show table
       info: {
          IMEI: "",
          SerialNumber: "",
          statusDevice:"",
       },
+      // input edit
+     form: {
+      InsertIMEI: '',
+      InsertSerialNumber : '',
+      InsertManufacturer: '',
+      InsertFirmware : '',
+      InsertGateWayID : '',
+      InsertAppID: '',
+      InsertModelID: '',
+      CmTypeID: '',
+      statusDevice : '',
+      contractnumber : '' ,
+      },
+     // Default value of options 
+      InsertIMEI: null,
+      InsertSerialNumber : null,
+      InsertManufacturer: null,
+      InsertFirmware : null,
+      InsertGateWayID : null,
+      InsertAppID: null,
+      InsertModelID: null,
+      CmTypeID: null,
+      statusDevice : null,
+      contractnumber : null,
+       //options 
+        GateWay : [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'GW001', text: 'Ocean Connect' },
+        ],
+        manufacturer: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'M0001', text: 'Arrow Tech Co.,Ltd' },
+        ],
+        communication: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'CT001', text: '4G' },
+          { value: 'CT002', text: '3G' },
+          { value: 'CT003', text: 'NB-IOT' },
+          { value: 'CT004', text: 'LORA' },
+        ],
+          status : [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'S0001', text: 'online' },
+          { value: 'S0003', text: 'offline' },
+          { value: 'N/A', text: ' N/A' },
+          
+        ],
+          firmware : [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'N/A', text: ' N/A' },
+          
+        ],
+         Application : [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'AP001', text: 'Tamroi' },
+            { value: 'N/A', text: ' N/A' },
+          
+        ],
+         contractnum : [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'S0001', text: 'S001' },
+            { value: 'PE012', text: 'PE012' },
+          
+        ],
+          modelname: [
+          { value: null, text: 'Please select an option', disabled: true  },
+          { value: 'M0001', text: 'A' },
+          { value: 'M0002', text: 'B' },
+          { value: 'M0003', text: 'C' },
+          { value: 'M0004', text: 'D' },
+        ],
+      //model 
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       headerBgVariant: 'primary',
       headerTextVariant: 'light',
@@ -102,6 +311,7 @@
        pageSize:10,
        pageIndex:1,
        filter: null,
+       // TAble
        fields: [
       
           { key: 'IMEI',  sortable: true },
@@ -112,6 +322,7 @@
           { key:"VIEW"}
         
             ], 
+            // data in model (button View)
            infoModal: {
           id: '',
           SerialNumber: '',
@@ -123,7 +334,8 @@
           AppPlatID:'',
           Model:'',
 
-        }
+        },
+        
             };
           },
               mounted() {
@@ -139,7 +351,7 @@
            },
             
                methods: {
-                     // eslint-disable-next-line vue/no-dupe-keys
+                     
                       model(a,b,c,d,e,f,g,h,i) {
                     // console.log(a,b,c);
                       this.infoModal.id = a,
@@ -153,30 +365,25 @@
                       this.infoModal.Model = i,
                       this.$root.$emit('bv::show::modal', a,b,c,d,e,f,g,h,i)
                     },
-                  deleteData: function(gg){
+                  deleteData: function(id){
                     //this.axios.post('https://localhost:44322/delete/device/' + 1234)
-                //   this.$swal({
-                //     title: 'Are you sure?',
-                //     text: 'You can\'t revert your action',
-                //     type: 'warning',
-                //     showCancelButton: true,
-                //     confirmButtonText: 'Yes Delete it!',
-                //     cancelButtonText: 'No, Keep it!',
-                //     showCloseButton: true,
-                //     showLoaderOnConfirm: true
-                //   }).then((result) => {
-                //     if(result.value) {
-                //       // this.$swal('Deleted', 'You successfully deleted this file', 'success')
-                //       axios.delete('https://localhost:44322/delete/device/' + imeiNum)
-                //     } else {
-                //       this.$swal('Cancelled', 'Your file is still intact', 'info')
-                //     }
-                //   })
-                this.axios({
+                  this.$swal({
+                    title: 'Are you sure?',
+                    text: 'You can\'t revert your action',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes Delete it!',
+                    cancelButtonText: 'No, Keep it!',
+                    showCloseButton: true,
+                    showLoaderOnConfirm: true
+                  }).then((result) => {
+                    if(result.value) {
+                      // this.$swal('Deleted', 'You successfully deleted this file', 'success')
+                         this.axios({
                             method: 'delete',
                             url: 'https://localhost:44322/delete/device',
                             data: {
-                                        IMEI : gg
+                                        IMEI : id
                                     }
                                 })
                                 .then(function (response) {
@@ -185,9 +392,13 @@
                                 .catch(function (error) {
                                     console.log(error);
                                 });
-
-                        // console.log(JSON.stringify(values));
-                        }
+                                console.log(JSON.stringify(id));
+                    } else {
+                      this.$swal('Cancelled', 'Your file is still intact', 'info')
+                    }
+                  })
+               
+                        },
               }
         
     }
@@ -212,7 +423,7 @@
       
         }
         #input{
-        margin-bottom:30%;
+        margin-bottom:10%;
         margin-left:15%;
   
         }
@@ -225,16 +436,7 @@
         }
 
 
-        #jumbody{
-           /* background-image: url("/img/jum.jpg"); */
-          margin-top:2%;
-           background-image: linear-gradient(to right, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);
-          background-position: center;
-        
-          background-size: cover;
-          position: relative;
-  
-        }
+     
 
      
 </style>

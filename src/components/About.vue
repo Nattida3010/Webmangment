@@ -1,15 +1,14 @@
-<template  >  
+<template  v-for="(results, imeiNum) in fields" >  
 
 <div  id="All" class="container" align="center" >
-<div>
-<b-jumbotron  id="jumbody">
+
   <b-row >
     <b-col md="6" class="my-2"  id="search"   >
       <b-form-group horizontal  class="mb-0" >
         <b-input-group id="input"  > 
           <b-form-input v-model="filter" placeholder=" Search" />
           <b-input-group-append>
-            <b-btn :disabled="!filter" @click="filter = ''" variant="primary" >Clear</b-btn>
+            <b-btn :disabled="!filter" @click="filter = ''" style="background-color:#4863A0 ;"  >Clear</b-btn>
           </b-input-group-append>
         </b-input-group>
       </b-form-group>
@@ -25,11 +24,11 @@
           :current-page="pageIndex" align="center"   >
 
       <template v-slot:cell(DETELE)="row">
-          <b-button pill variant="outline-info" v-on:click="alertDelete" >DETELE</b-button>
+          <b-button pill variant="outline-info"  @click="deleteData(row.item.IMEI)" >Delete</b-button>
        </template>
 
       <template v-slot:cell(EDIT)="row">
-          <b-button pill variant="outline-info"  >EDIT</b-button>
+          <b-button pill variant="outline-info"   >EDIT</b-button>
       </template>
   
       <template v-slot:cell(VIEW)="row">             
@@ -74,10 +73,10 @@
   <div align="center"  >
       CurrentPage: {{pageIndex}}
   </div>  
-</b-jumbotron> 
-</div>
 
 </div>
+
+
 
 </template>
 
@@ -139,7 +138,7 @@
            },
             
                methods: {
-                     // eslint-disable-next-line vue/no-dupe-keys
+                     
                       model(a,b,c,d,e,f,g,h,i) {
                     // console.log(a,b,c);
                       this.infoModal.id = a,
@@ -153,36 +152,44 @@
                       this.infoModal.Model = i,
                       this.$root.$emit('bv::show::modal', a,b,c,d,e,f,g,h,i)
                     },
-                    // showAlert(){
-                    //   // Use sweetalret2
-                    //   this.$confirm("Are you sure?").then(() => {
-                    //   //do something...
-                    //   });
-                    // },
-                //   alertDelete() {
-                //   this.$swal({
-                //     title: 'Are you sure?',
-                //     text: 'You can\'t revert your action',
-                //     type: 'warning',
-                //     showCancelButton: true,
-                //     confirmButtonText: 'Yes Delete it!',
-                //     cancelButtonText: 'No, Keep it!',
-                //     showCloseButton: true,
-                //     showLoaderOnConfirm: true
-                //   }).then((result) => {
-                //     if(result.value) {
-                //       this.$swal('Deleted', 'You successfully deleted this file', 'success')
-                //     } else {
-                //       this.$swal('Cancelled', 'Your file is still intact', 'info')
-                //     }
-                //   })
-                // }
-                              
+                  deleteData: function(id){
+                    //this.axios.post('https://localhost:44322/delete/device/' + 1234)
+                  this.$swal({
+                    title: 'Are you sure?',
+                    text: 'You can\'t revert your action',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes Delete it!',
+                    cancelButtonText: 'No, Keep it!',
+                    showCloseButton: true,
+                    showLoaderOnConfirm: true
+                  }).then((result) => {
+                    if(result.value) {
+                      // this.$swal('Deleted', 'You successfully deleted this file', 'success')
+                         this.axios({
+                            method: 'delete',
+                            url: 'https://localhost:44322/delete/device',
+                            data: {
+                                        IMEI : id
+                                    }
+                                })
+                                .then(function (response) {
+                                    console.log(response);
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                                console.log(JSON.stringify(id));
+                    } else {
+                      this.$swal('Cancelled', 'Your file is still intact', 'info')
+                    }
+                  })
+               
+                        }
+              }
+        
+    }
               
-
-                    
-                  }
-              };
 </script>
 
 
@@ -203,7 +210,7 @@
       
         }
         #input{
-        margin-bottom:30%;
+        margin-bottom:10%;
         margin-left:15%;
   
         }
@@ -216,16 +223,7 @@
         }
 
 
-        #jumbody{
-           /* background-image: url("/img/jum.jpg"); */
-          margin-top:2%;
-           background-image: linear-gradient(to right, #ffffff, #ffffff, #ffffff, #ffffff, #ffffff);
-          background-position: center;
-        
-          background-size: cover;
-          position: relative;
-  
-        }
+     
 
      
 </style>

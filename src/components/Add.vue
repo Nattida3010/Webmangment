@@ -88,7 +88,7 @@
       <label > Contractnumber * :</label>
     </b-col>
     <b-col sm="5">
-      <b-form-select v-model="contractnumber" :options="contractnum" required  ></b-form-select>
+      <b-form-select v-model="Contractnumber" :options="contractnum" required  ></b-form-select>
   
     <div class="mt-3"> <strong></strong></div>
     </b-col>
@@ -122,8 +122,8 @@ export default {
   data() {
     return {
      form: {
-       InsertIMEI: '',
-       InsertSerialNumber : '',
+      InsertIMEI: '',
+      InsertSerialNumber : '',
       InsertManufacturer: '',
       InsertFirmware : '',
       InsertGateWayID : '',
@@ -131,11 +131,11 @@ export default {
       InsertModelID: '',
       CmTypeID: '',
       statusDevice : '',
-      contractnumber : '' ,
+      Contractnumber : '' ,
       },
       imagePreview: "",
-       InsertIMEI: null,
-       InsertSerialNumber : null,
+      InsertIMEI: null,
+      InsertSerialNumber : null,
       InsertManufacturer: null,
       InsertFirmware : null,
       InsertGateWayID : null,
@@ -184,26 +184,7 @@ export default {
             { value: 'PE012', text: 'PE012' },
           
         ],
-        //  sim: [
-        //   { value: null, text: 'Please select an option', disabled: true  },
-        //   { value: 'eSIM', text: 'eSIM' },
-        //   { value: 'Micro SIM', text: 'Micro SIM' },
-  
-        // ],
-        //  operter: [
-        //   { value: null, text: 'Please select an option', disabled: true  },
-        //   { value: 'AIS', text: 'AIS' },
-        //   { value: 'True Move', text: 'True Move' },
-        //   { value: 'Dtac', text: 'Dtac' },
-        // ],
-        //   modelband: [
-        //   { value: null, text: 'Please select an option', disabled: true  },
-        //   { value: 'Huawei', text: 'Huawei' },
-        //   { value: 'SUMSUNG', text: 'SUMSUNG' },
-        //   { value: 'Huawei', text: 'Huawei' },
-        //   { value: 'Nokia', text: 'Nokia' },
-  
-        // ],
+     
          modelname: [
           { value: null, text: 'Please select an option', disabled: true  },
           { value: 'M0001', text: 'A' },
@@ -218,12 +199,7 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
-      //  alert(JSON.stringify(this.form));
-          // const  sendData = {
-          // email  :this.form.Email,this.form.Email,
-          // name  : this.form.Name
-          // }
-
+    
 
           // send a POST request
           this.axios({
@@ -239,7 +215,7 @@ export default {
                         InsertModelID: this.InsertModelID,
                         CmTypeID: this.CmTypeID,
                         statusDevice : this. statusDevice,
-                        contractnumber : this.contractnumber,
+                        Contractnumber : this.contractnumber,
                      
                     }
                 })

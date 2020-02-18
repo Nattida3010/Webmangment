@@ -48,7 +48,7 @@
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
           <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-          <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+          <b-button size="sm" class="my-2 my-sm-0" style="background-color:#4863A0 ;" type="submit">Search</b-button>
         </b-nav-form>
 
         <b-nav-item-dropdown text="Lang" right>
@@ -74,9 +74,9 @@
 <router-view/>
 
     <div class="card-header h-100" >
-      <b-card  class="a"  type="dark" >
-        <b-tabs pills card vertical nav-wrapper-class="w-10" active-nav-item-class="font-weight-bold text-light" >
-          <b-tab  title="DEVICES " disabled > <About/></b-tab>
+      <b-card  >
+        <b-tabs  pills card vertical nav-wrapper-class="mytabs" active-nav-item-class="font-weight-bold text-light">
+          <b-tab title="DEVICES " disabled > <About/></b-tab>
           <b-tab title=" ALL DEVICES" > <About/></b-tab>
           <b-tab title="ADD DEVICE"><Add/></b-tab>
           <b-tab title=" IMPORT DEVICE"><Table/></b-tab>
@@ -108,7 +108,7 @@ export default {
 <style>
 
 #nav {
-background-color: rgb(153, 223, 236) ;
+background-color:#657383 ;
 }
 #round-button {
 display:block;
@@ -132,6 +132,9 @@ font-weight:bold;
   margin-left: 5%;
 }
 
+.tabs.mytabs .nav-tabs .nav-link.active {
+  background-color: #a32ab3 !important;
+}
 
 
 
