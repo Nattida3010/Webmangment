@@ -106,7 +106,7 @@
 
    <div id="add"> 
      <!-- <router-link to="/AllDevices"><b-button   pill variant="success" >ADD </b-button></router-link>  -->
-       <b-button   type="submit" pill variant="success"  v-on:click="alertDisplay"  >ADD </b-button>
+       <b-button   type="submit" pill variant="success"    >ADD </b-button>
   </div>
     </b-form>
   
@@ -143,7 +143,7 @@ export default {
       InsertModelID: null,
       CmTypeID: null,
       statusDevice : null,
-      contractnumber : null,
+      Contractnumber : null,
       
         GateWay : [
           { value: null, text: 'Please select an option', disabled: true  },
@@ -221,19 +221,18 @@ export default {
                 })
                 .then(function (response) {
                     console.log(response);
-                    //  window.location.reload();
+                     window.location.reload();
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-
-        // console.log(JSON.stringify(values));
+             //console.log(JSON.stringify(values));
         },
-       alertDisplay() {
-        // $swal function calls SweetAlert into the application with the specified configuration.
-      this.$swal('Success', 'Data Successfully Saved', 'OK',);
-       window.location.reload();
-      }
+      //  alertDisplay() {
+      //   // $swal function calls SweetAlert into the application with the specified configuration.
+      // this.$swal('Success', 'Data Successfully Saved', 'OK',);
+      //  window.location.reload();
+      // }
     
   }
 

@@ -32,14 +32,14 @@
           <b-button pill variant="outline-info"  
               @click="edit( row.item.IMEI, 
                         row.item.SerialNumber , 
-                        row.item.Manufacturer, 
-                        row.item.statusDevice,
-                        row.item.Firmware,
-                        row.item.contractnumber,
+                        row.item.ManufacturerID, 
+                        row.item.StaID,
+                        row.item.FirmwareID,
+                        row.item.contractnumberid,
                         row.item.GateWay,
-                        row.item.AppPlatID,
-                        row.item.Model,
-                        row.item.GateWayId)" >EDIT</b-button>
+                        row.item.applicationid,
+                        row.item.ModelID,
+                        row.item.GateWayID)" >EDIT</b-button>
       </template>
   
       <template v-slot:cell(VIEW)="row">             
@@ -105,56 +105,50 @@
         <b-row class="my-1"> 
           <b-col sm="3"> <label > Device status * :</label></b-col>
           <b-col sm="5">
-             <b-form-input  v-model="infoEdit.statusDevice" :options="status" required ></b-form-input>
+            <b-form-select  v-model="infoEdit.StaID" :options="status" required ></b-form-select>
           </b-col>
         </b-row>
 
         <b-row class="my-1"> 
           <b-col sm="3"> <label > Model * :</label></b-col>
           <b-col sm="5">
-             <b-form-input v-model="infoEdit.Model" :options=" modelname" required ></b-form-input>
+               <b-form-select v-model="infoEdit.ModelID" :options=" modelname" required ></b-form-select>
           </b-col>
         </b-row>
 
         <b-row class="my-1"> 
           <b-col sm="3"> <label > Manufacturer * :</label></b-col>
           <b-col sm="5">
-             <b-form-input v-model="infoEdit.Manufacturer" :options="manufacturer" required ></b-form-input>
+              <b-form-select v-model="infoEdit.ManufacturerID" :options="manufacturer" required ></b-form-select>
           </b-col>
         </b-row>
 
         <b-row class="my-1"> 
           <b-col sm="3"> <label > Firmware * :</label></b-col>
           <b-col sm="5">
-           <b-form-input v-model="infoEdit.Firmware" :options="firmware" required ></b-form-input>
+          <b-form-select  v-model="infoEdit.FirmwareID" :options="firmware" required ></b-form-select>
           </b-col>
         </b-row>
 
         <b-row class="my-1"> 
           <b-col sm="3"> <label > Contractnumber * :</label></b-col>
           <b-col sm="5">
-           <b-form-input v-model="infoEdit.contractnumber" :options="contractnum" required ></b-form-input>
+            <b-form-select  v-model="infoEdit.contractnumberid" :options="contractnum" required ></b-form-select>
           </b-col>
         </b-row>
 
-        <b-row class="my-1"> 
-          <b-col sm="3"> <label > GateWay :</label></b-col>
-          <b-col sm="5">
-             <b-form-input v-model="infoEdit.GateWay" :options="GateWay" required ></b-form-input>
-          </b-col>
-        </b-row>
         
         <b-row class="my-1"> 
           <b-col sm="3"> <label > Application * :</label></b-col>
           <b-col sm="5">
-          <b-form-input  v-model="infoEdit.AppPlatID" :options="Application" required ></b-form-input>
+            <b-form-select   v-model="infoEdit.applicationid" :options="Application" required ></b-form-select>
           </b-col>
         </b-row>  
 
            <b-row class="my-1"> 
-          <b-col sm="3"> <label > GateWay ID * :</label></b-col>
+          <b-col sm="3"> <label > GateWay * :</label></b-col>
           <b-col sm="5">
-          <b-form-input  v-model="infoEdit.GateWayId" :options="Application" required ></b-form-input>
+          <b-form-select  v-model="infoEdit.GateWayID" :options="GateWay" required ></b-form-select>
           </b-col>
         </b-row>          
         </b-form>
@@ -207,25 +201,24 @@
       Manufacturer: '',
       statusDevice:'',
       Firmware: '',
-      contractnumber:'',
+      contractnumberid:'',
       GateWay:'',
       AppPlatID:'',
       Model:'',
+     
      
         },
        //info Modelของปุ่ม edit
       infoEdit: {
       id: '',
       SerialNumber: '',
-      Manufacturer: '',
-      statusDevice:'',
+      ManufacturerID: '',
+      StaID:'',
       Firmware: '',
       contractnumber:'',
-      GateWay:'',
-      AppPlatID:'',
-      Model:'',
-      CmTypeId : '',
-      GateWayId:''
+      applicationid:'',
+      ModelID:'',
+      GateWayID:''
         },
          //options 
         GateWay : [
@@ -246,8 +239,8 @@
           status : [
           { value: null, text: 'Please select an option', disabled: true  },
           { value: 'S0001', text: 'online' },
-          { value: 'S0003', text: 'offline' },
-          { value: 'N/A', text: ' N/A' },
+          { value: 'S0002', text: 'offline' },
+          { value: 'S0003', text: ' N/A' },
           
         ],
           firmware : [
@@ -297,7 +290,8 @@
                             contract_num,
                             Gate_Way,
                             AppPlat_ID,
-                            Model
+                            Model,
+                            
                            ) 
                       {                  
                       this.infoModal.id = imei,
@@ -309,9 +303,10 @@
                       this.infoModal.GateWay =  Gate_Way,
                       this.infoModal.AppPlatID = AppPlat_ID,
                       this.infoModal.Model = Model,
+                      // this.infoModal.Model = GateWayID
                    
                       this.$root.$emit('bv::show::modal', imei,Serial_Number,Manufacturer,status_Device,
-                                       firmwar,contract_num, Gate_Way,AppPlat_ID,Model)
+                                       firmwar,contract_num, Gate_Way,AppPlat_ID,Model,)
                     },
                        // set ค่า detail เมื่อกดปุ่ม edit   
                       edit(a,b,c,d,e,f,g,h,i,j) {
@@ -321,20 +316,18 @@
                       console.log('d :'+d);
                       console.log('e :'+e);
                       console.log('f :'+f);
-                      console.log('g :'+g); 
                       console.log('h :'+h);
                       console.log('i :'+i);
                       console.log('j : '+j);
                       this.infoEdit.id = a,
                       this.infoEdit.SerialNumber = b ,
-                      this.infoEdit.Manufacturer = c,
-                      this.infoEdit.statusDevice = d,
-                      this.infoEdit.Firmware = e,
-                      this.infoEdit.contractnumber = f,
-                      this.infoEdit.GateWay = g,
-                      this.infoEdit.AppPlatID = h,
-                      this.infoEdit.Model = i,
-                      this.infoEdit.GateWayId = j,
+                      this.infoEdit.ManufacturerID = c,
+                      this.infoEdit.StaID = d,
+                      this.infoEdit.FirmwareID = e,
+                      this.infoEdit.contractnumberid = f,
+                      this.infoEdit.applicationid = h,
+                      this.infoEdit.ModelID = i,
+                      this.infoEdit.GateWayID = j,
                       this.$root.$emit('bv::show::modal', a,b,c,d,e,f,g,h,i,j)
                     },
                   deleteData: function(id){
