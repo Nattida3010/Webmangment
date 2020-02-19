@@ -5,7 +5,7 @@
   <b-jumbotron  style="background-image: linear-gradient(#FFFFFF,#D7E1EC);" >
     <div class="container" align="center" id="jum">
         <label id="text-req" >* indicated a required field</label>
-   <b-form  @submit="onSubmit"   >         
+   <b-form @submit="onSubmit"  >         
  <b-row class="my-1">
     <b-col sm="4">
       <label  >GateWay Name*:</label>
@@ -88,7 +88,7 @@
       <label > Contractnumber * :</label>
     </b-col>
     <b-col sm="5">
-      <b-form-select v-model="Contractnumber" :options="contractnum" required  ></b-form-select>
+      <b-form-select v-model="contractnumberid" :options="contractnum" required  ></b-form-select>
   
     <div class="mt-3"> <strong></strong></div>
     </b-col>
@@ -106,7 +106,7 @@
 
    <div id="add"> 
      <!-- <router-link to="/AllDevices"><b-button   pill variant="success" >ADD </b-button></router-link>  -->
-       <b-button   type="submit" pill variant="success"    >ADD </b-button>
+       <b-button   type="submit"  pill variant="success"       >ADD </b-button>
   </div>
     </b-form>
   
@@ -114,7 +114,6 @@
     </b-jumbotron>
     
 </template>
-
 <script>
 
 export default {
@@ -131,7 +130,7 @@ export default {
       InsertModelID: '',
       CmTypeID: '',
       statusDevice : '',
-      Contractnumber : '' ,
+      contractnumberid : '' ,
       },
       imagePreview: "",
       InsertIMEI: null,
@@ -143,7 +142,7 @@ export default {
       InsertModelID: null,
       CmTypeID: null,
       statusDevice : null,
-      Contractnumber : null,
+      contractnumberid : null,
       
         GateWay : [
           { value: null, text: 'Please select an option', disabled: true  },
@@ -160,11 +159,11 @@ export default {
           { value: 'CT003', text: 'NB-IOT' },
           { value: 'CT004', text: 'LORA' },
         ],
-          status : [
+         status : [
           { value: null, text: 'Please select an option', disabled: true  },
           { value: 'S0001', text: 'online' },
-          { value: 'S0003', text: 'offline' },
-          { value: 'N/A', text: ' N/A' },
+          { value: 'S0002', text: 'offline' },
+          { value: 'S0003', text: ' N/A' },
           
         ],
           firmware : [
@@ -199,8 +198,6 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
-    
-
           // send a POST request
           this.axios({
             method: 'post',
@@ -215,20 +212,21 @@ export default {
                         InsertModelID: this.InsertModelID,
                         CmTypeID: this.CmTypeID,
                         statusDevice : this. statusDevice,
-                        Contractnumber : this.contractnumber,
-                     
+                        contractnumberid : this.contractnumberid,
+      
                     }
                 })
                 .then(function (response) {
                     console.log(response);
-                     window.location.reload();
+                    window.location.reload();
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
              //console.log(JSON.stringify(values));
+               window.location.reload();
         },
-      //  alertDisplay() {
+      //      alertDisplay() {
       //   // $swal function calls SweetAlert into the application with the specified configuration.
       // this.$swal('Success', 'Data Successfully Saved', 'OK',);
       //  window.location.reload();

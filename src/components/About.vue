@@ -49,7 +49,7 @@
                             row.item.Manufacturer, 
                             row.item.statusDevice,
                             row.item.Firmware,
-                            row.item.contractnumber,
+                            row.item.contractnumberid,
                             row.item.GateWay,
                             row.item.AppPlatID,
                             row.item.Model)">VIEW</b-button> 
@@ -71,14 +71,14 @@
               <pre><b> Model  : </b>   {{infoModal.Model }}</pre>
               <pre><b> Manufacturer :</b>{{infoModal.Manufacturer}} </pre>
               <pre><b> Firmware  : </b> {{ infoModal.Firmware }}</pre>
-              <pre><b> Contractnumber  : </b>{{infoModal.contractnumber }}</pre>
+              <pre><b> Contractnumber  : </b>{{infoModal.contractnumberid }}</pre>
               <pre><b> GateWay  : </b>   {{infoModal.GateWay }}</pre>    
               <pre><b>Application  : </b>  {{infoModal.AppPlatID}}</pre>
   </b-modal>
 
 <!-- กดปุ่ม edit แล้วโชว์ model  edit  -->
   <b-modal  
-    title="Edit Device  Detail"  size="lg"
+    title="Edit Device  Detail"  size="lg" hide-footer
     :id="infoEdit.id" 
     :header-bg-variant="headerBgVariant"
     :header-text-variant="headerTextVariant"
@@ -215,7 +215,7 @@
       ManufacturerID: '',
       StaID:'',
       Firmware: '',
-      contractnumber:'',
+      contractnumberid:'',
       applicationid:'',
       ModelID:'',
       GateWayID:''
@@ -274,7 +274,7 @@
                 axios
                   .get("https://localhost:44322/view/allDevice")
                   .then(function(response) {
-                   console.log(JSON.stringify(response.data));
+                  //  console.log(JSON.stringify(response.data));
                     self.info = response.data;
                   }
               );
@@ -299,7 +299,7 @@
                       this.infoModal.Manufacturer = Manufacturer,
                       this.infoModal.statusDevice = status_Device,
                       this.infoModal.Firmware = firmwar,
-                      this.infoModal.contractnumber = contract_num,
+                      this.infoModal.contractnumberid = contract_num,
                       this.infoModal.GateWay =  Gate_Way,
                       this.infoModal.AppPlatID = AppPlat_ID,
                       this.infoModal.Model = Model,
@@ -353,11 +353,13 @@
                                 })
                                 .then(function (response) {
                                     console.log(response);
+                                     window.location.reload();
                                 })
                                 .catch(function (error) {
                                     console.log(error);
                                 });
                                 console.log(JSON.stringify(id));
+                                 
                     } else {
                       this.$swal('Cancelled', 'Your file is still intact', 'info')
                     }
