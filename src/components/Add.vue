@@ -2,7 +2,7 @@
 <template>
   
 <!-- style=" box-shadow: 10px 10px 5px grey;" -->
-  <b-jumbotron  style="background-image: linear-gradient(#FFFFFF,#D7E1EC);" >
+  <b-jumbotron  style="background-color: #D2E1E1" >
     <div class="container" align="center" id="jum">
         <label id="text-req" >* indicated a required field</label>
    <b-form @submit="onSubmit"  >         
@@ -31,7 +31,7 @@
       <label >IMEI* :</label>
     </b-col>
     <b-col sm="5">
-           <b-form-input   type="text" v-model="InsertIMEI" required ></b-form-input>
+           <b-form-input  placeholder="Ex.909048362185963" pattern="^[0-9]{15}$"   type="text" v-model="InsertIMEI" required ></b-form-input>
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
@@ -40,7 +40,7 @@
       <label >Serial number*:</label>
     </b-col>
     <b-col sm="5">
-             <b-form-input  type="text" v-model="InsertSerialNumber" required ></b-form-input>
+             <b-form-input  placeholder="Ex.S140F36006187" pattern="^[A-Z,0-9]{12}$"   type="text" v-model="InsertSerialNumber" required ></b-form-input>
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
@@ -106,7 +106,7 @@
 
    <div id="add"> 
      <!-- <router-link to="/AllDevices"><b-button   pill variant="success" >ADD </b-button></router-link>  -->
-       <b-button   type="submit"  pill variant="success"       >ADD </b-button>
+       <b-button   type="submit"  pill style="background-color:#4863A0 ;" >ADD </b-button>
   </div>
     </b-form>
   
@@ -168,7 +168,7 @@ export default {
         ],
           firmware : [
           { value: null, text: 'Please select an option', disabled: true  },
-          { value: 'N/A', text: ' N/A' },
+          { value: 'F0001', text: ' N/A' },
           
         ],
          Application : [
@@ -245,7 +245,7 @@ export default {
     margin-top: 3%;
 }
 #add{
- margin-left: 40%;
+ margin-left: 50%;
   
 }
 #text-req{

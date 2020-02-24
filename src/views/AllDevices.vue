@@ -15,11 +15,8 @@
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
 
-        <b-navbar-nav >
-           <router-link style="color:white;" to="/about">About</router-link>
-        </b-navbar-nav>
-
-        <div>
+    
+        <!-- <div>
           <b-navbar-nav>
              <router-link style="color:white; margin-left:10px;" to="/home">Home</router-link>
           </b-navbar-nav>
@@ -42,7 +39,7 @@
           <router-link style="color:white; margin-left:10px;" to="/AllDevices">AllDevices</router-link>
       </b-navbar-nav>
     </div>
-      
+       -->
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
@@ -77,10 +74,10 @@
       <b-card  >
         <b-tabs  pills card vertical nav-wrapper-class="mytabs" active-nav-item-class="font-weight-bold text-light">
           <b-tab title="DEVICES " disabled > <About/></b-tab>
-          <b-tab title=" ALL DEVICES" > <About/></b-tab>
+          <b-tab title=" ALL DEVICES" > <Home/></b-tab>
           <b-tab title="ADD DEVICE"><Add/></b-tab>
           <b-tab title=" IMPORT DEVICE"><Table/></b-tab>
-          <b-tab title="SIM" disabled> <About/></b-tab>
+          <b-tab title="SIM" disabled> <Home/></b-tab>
           <b-tab title="CONTRACT" disabled> <About/></b-tab>
         
         </b-tabs>
@@ -93,12 +90,12 @@
 <script>
 
 import Table from '@/components/Table'
-import About from '@/components/About'
+import Home from '@/components/Home'
 import Add from '@/components/Add'
 
 export default {
   components:{
-    Table , About ,Add
+    Table , Home ,Add
   }
 
 
@@ -132,9 +129,6 @@ font-weight:bold;
   margin-left: 5%;
 }
 
-.tabs.mytabs .nav-tabs .nav-link.active {
-  background-color: #a32ab3 !important;
-}
 
 
 
