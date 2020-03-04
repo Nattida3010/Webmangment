@@ -1,172 +1,66 @@
 <template>
-  <div id="app">
-    <b-form  @submit="onSubmit"   >
-      <b-form-group id="exampleInputGroup1"
-                    label="Email:"
-                    label-for="exampleInput1">
-        <b-form-input id="exampleInput1"
-                      type="email"
-                      v-model="form.Email"
-                      required
-                      placeholder="">
-        </b-form-input>
-      </b-form-group>
-       <b-form-group id="exampleInputGroup2"
-                    label="Name:"
-                    label-for="exampleInput2">
-        <b-form-input id="exampleInput2"
-                      type="text"
-                      v-model="form.Name"
-                      required
-                      placeholder="">
-        </b-form-input>
-      </b-form-group>
-      <!-- <b-form-group id="exampleInputGroup3"
-                    label="InsertManufacturer:"
-                    label-for="exampleInput3">
-        <b-form-input id="exampleInput"
-                      type="text"
-                      v-model="form.Manufacturer"
-                      required
-                      placeholder="Harry Tech Co.,Ltd">
-        </b-form-input>
-      </b-form-group>
-      <b-form-group id="exampleInputGroup4"
-                    label="InsertIoTPlatID:"
-                    label-for="exampleInput4">
-        <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.IoTPlatID"
-                      required
-                      placeholder="IOT5896">
-        </b-form-input>
-       </b-form-group>
-        <b-form-group id="exampleInputGroup5"
-                    label="nsertAppPlatID :"
-                    label-for="exampleInput5">
-        <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.AppPlatID"
-                      required
-                      placeholder="AP4584">
-        </b-form-input>
-       </b-form-group>
-        <b-form-group id="exampleInputGroup6"
-                    label="InsertStatusID:"
-                    label-for="exampleInput6">
-        <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.StatusID"
-                      required
-                      placeholder="S4625">
-        </b-form-input>
-       </b-form-group>
-
- <b-form-group id="exampleInputGroup7"
-                    label="InsertModelID:"
-                    label-for="exampleInput7">
-        <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.ModelID"
-                      required
-                      placeholder="M1455">
-        </b-form-input>
-       </b-form-group>
- <b-form-group id="exampleInputGroup8"
-                    label="InsertCmTypeID:"
-                    label-for="exampleInput4">
-        <b-form-input id="exampleInput3"
-                      type="text"
-                      v-model="form.TypeID" 
-                      required
-                      placeholder="CT579">
-        </b-form-input>
-       </b-form-group> -->
-
-
-
-      
-
-     <b-button type="submit" variant="primary">Submit</b-button>
-   
-      
-    </b-form>
-
+  <div class="container">
+    <div class="large-12 medium-12 small-12 cell">
+      <label>File
+        <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+      </label>
+      <button v-on:click="submitFile()">Submit</button>
+    </div>
   </div>
 </template>
+
 <script>
+  import axios from "axios";
+  export default {
+    /*
+      Defines the data used by the component
+    */
+    data(){
+      return {
+        file: ''
+      }
+    },
 
-export default {
-  name: 'app',
-  components: {
-
-  },
-  data () {
-    return {
-      form: {
-       Email: '',
-       Name : '',
+    methods: {
+      /*
+        Submits the file to the server
+      */
+      submitFile(){
+        /*
+          Initialize the form data
+            */
+            let formData = new FormData();
+            /*
+                Add the form data we need to submit
+            */
+            formData.append('file', this.file);
+        /*
+          Make the request to the POST /single-file URL
+        */
+            axios.post( 'https://localhost:44386/api/FileUploading/UploadFile',
+                formData,
+                {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+              }
+            ).then(function(){
+            console.log('SUCCESS!!');
+        })
+        .catch(function(){
+          console.log('FAILURE!!');
+        });
       },
+
+      /*
+        Handles a change on the file upload
+      */
+      handleFileUpload(){
+        this.file = this.$refs.file.files[0];
+      }
     }
-  },
-  methods: {
-    onSubmit (evt) {
-      evt.preventDefault();
-       alert(JSON.stringify(this.form));
-          // const  sendData = {
-          // email  :this.form.Email,
-          // name  : this.form.Name
-          // }
-
-          // const cors = require('cors');
-
-          // //app.use(cors());
-
-          // this.use(cors({
-          //   origin: 'https://localhost:44324',
-          //   credentials: true
-          // }));
-
-          // this.axios({
-          //   method: 'post',
-          //   url: 'https://localhost:44324/api/values/',
-          //   headers: {
-          //        'Access-Control-Allow-Origin': '*',
-          //       'Content-Type': 'application/json',
-          //   },
-          //   data: {
-          //     value: "ssss", // This is the body part
-          //   }
-          // });
-
-          //   var values = "dddd"
-          // //  this.axios.post("https://localhost:44324/api/values",values ,{
-          // // })
-
-
-          //   this.axios.post('https://localhost:44324/api/values/', {
-          //      value: values,         
-          // })
-
-          // send a POST request
-          this.axios({
-            method: 'post',
-            url: 'https://localhost:44324/api/values',
-             data: {
-                        "firstName": "s",
-                        "lastName": "s"
-                    }
-                })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-
-        // console.log(JSON.stringify(values));
-        },
-    
   }
-}
 </script>
+
+
+                    

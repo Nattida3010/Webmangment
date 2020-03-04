@@ -1,54 +1,48 @@
-// EditComponent.vue
 
 <template>
-  <div>
-    <h1>Edit Post</h1>
-    <form @submit.prevent="updatePost">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Post Title:</label>
-            <input type="text" class="form-control" v-model="post.title">
-          </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Post Body:</label>
-              <textarea class="form-control" v-model="post.body" rows="5"></textarea>
-            </div>
-          </div>
-        </div><br />
-        <div class="form-group">
-          <button class="btn btn-primary">Update</button>
-        </div>
-    </form>
-  </div>
+  <div class="sidebar">
+  <a href="#home"><i class="fa fa-fw fa-home"></i> Home</a>
+  <a href="#services"><i class="fa fa-fw fa-wrench"></i> Services</a>
+  <a href="#clients"><i class="fa fa-fw fa-user"></i> Clients</a>
+  <a href="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+</div>
 </template>
+<style scoped>
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
 
-<script>
-    export default {
+/* Style sidebar links */
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+}
 
-      data() {
-        return {
-          post: {}
-        }
-      },
-      created() {
-        let uri = `http://vuelaravelcrud.test/api/post/edit/${this.$route.params.id}`;
-        this.axios.get(uri).then((response) => {
-            this.post = response.data;
-        });
-      },
-      methods: {
-        updatePost() {
-          let uri = `http://vuelaravelcrud.test/api/post/update/${this.$route.params.id}`;
-          // eslint-disable-next-line no-unused-vars
-           this.axios.post(uri, this.post).then((response) => {
-            this.$router.push({name: 'posts'});
-          });
-        }
-      }
-    }
-</script>
+/* Style links on mouse-over */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Style the main content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>

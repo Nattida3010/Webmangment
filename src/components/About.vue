@@ -39,7 +39,8 @@
                         row.item.GateWay,
                         row.item.applicationid,
                         row.item.ModelID,
-                        row.item.GateWayID)" >EDIT</b-button>
+                        row.item.GateWayID)" 
+                        >EDIT</b-button>
       </template>
   
       <template v-slot:cell(VIEW)="row">             
@@ -167,7 +168,7 @@
 
 <script>
     import axios from "axios";
-    export default {
+    export default { 
   data() {
     return { 
       info: {
@@ -274,7 +275,7 @@
                 axios
                   .get("https://localhost:44322/view/allDevice")
                   .then(function(response) {
-                  //  console.log(JSON.stringify(response.data));
+                   console.log(JSON.stringify(response.data));
                     self.info = response.data;
                   }
               );
@@ -353,7 +354,7 @@
                                 })
                                 .then(function (response) {
                                     console.log(response);
-                                     window.location.reload();
+                                    window.location.reload();
                                 })
                                 .catch(function (error) {
                                     console.log(error);

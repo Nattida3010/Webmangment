@@ -106,6 +106,7 @@ export default {
 
 #nav {
 background-color:#657383 ;
+
 }
 #round-button {
 display:block;
@@ -128,8 +129,4 @@ font-weight:bold;
 #nav-collapse{
   margin-left: 5%;
 }
-
-
-
-
 </style>

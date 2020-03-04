@@ -1,10 +1,9 @@
 <template>
   
-
-  <b-jumbotron style="background-image: linear-gradient(#FFFFFF,#D7E1EC);" >
+    <b-jumbotron style="background-image: linear-gradient(#FFFFFF,#D7E1EC);" >
     <div class="container" align="center" id="jum">
       <div id="export">
-    <b-button @click="onExport" pill  variant="info"  >Export <b-img :src="require('../img/export.png')" v-bind="mainProps"
+    <b-button @click="onExport" pill  variant="info"  >Export <b-img :src="require('../img/export.png')"
   style="width:20px;height:20px;"> </b-img> </b-button>
      
       </div>
@@ -52,7 +51,7 @@
       <label for="input-none">Sim Type:</label>
     </b-col>
     <b-col sm="5">
-       <b-form-select v-model="selected" :options="sim"></b-form-select>
+       <b-form-select v-model ="selected" :options="sim"></b-form-select>
     <div class="mt-3"> <strong></strong></div>
     </b-col>
   </b-row>
@@ -80,7 +79,7 @@
   </div>
 
  <div id="add"> 
-     <router-link to="/about"><b-button  pill variant="success" >Import<b-img :src="require('../img/import.png')" v-bind="mainProps"
+     <router-link to="/about"><b-button  pill variant="success" >Import<b-img :src="require('../img/import.png')" 
   style="width:20px;height:20px;"> </b-img></b-button></router-link> 
   </div>
     <!-- <input name="image" type="file" id="file-field" v-on:change="updatePreview" style="display: none;"> -->
