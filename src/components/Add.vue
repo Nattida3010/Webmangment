@@ -222,7 +222,7 @@ export default {
                  
                 })
                         .then(function (response) {
-                             console.log(response);
+                            console.log(response);
                               alert('Test');
                               window.location.reload();
                         })

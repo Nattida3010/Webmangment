@@ -12,12 +12,101 @@
             <input type="file" id="csv_file" name="csv_file" class="form-control" @change="loadCSV($event)">
           </div>
         </div>
+        <!-- Test -->
+        <b-form  >   
+
+             <b-row class="my-1">
+               <b-col sm="4">
+                  <label  >GateWay Name*:</label>
+               </b-col>
+                <b-col sm="5">
+                 <b-form-select  v-model="InsertGateWayID" :options="GateWay" required></b-form-select>
+                 <div class="mt-3"> <strong></strong></div>
+                </b-col>
+             </b-row>
+
+             <b-row class="my-1">
+                <b-col sm="4">
+                  <label>Application Name*:</label>
+                </b-col>
+                <b-col sm="5">
+                  <b-form-select   v-model= "InsertAppID"  :options="Application"  required></b-form-select>
+                <div class="mt-3"> <strong></strong></div>
+                </b-col>
+             </b-row>
+
+              <b-row class="my-1">
+                <b-col sm="4">
+                  <label>Manufacturer Name*:</label>
+                </b-col>
+                <b-col sm="5">
+                  <b-form-select v-model="InsertManufacturer" :options="manufacturer" required  ></b-form-select>
+                <div class="mt-3"> <strong></strong></div>
+                </b-col>
+              </b-row>
+
+                <b-row class="my-1">
+                <b-col sm="4">
+                  <label>Firmware*:</label>
+                </b-col>
+                <b-col sm="5">
+                <b-form-select v-model="InsertFirmware" :options="firmware " required  ></b-form-select> 
+                <div class="mt-3"> <strong></strong></div>
+                </b-col>
+              </b-row>
+
+              <b-row class="my-1">
+                <b-col sm="4">
+                  <label>Model Name*:</label>
+                </b-col>
+                <b-col sm="5">
+                  <b-form-select v-model="InsertModelID" :options="modelname" required  ></b-form-select>
+                <div class="mt-3"> <strong></strong></div>
+                </b-col>
+              </b-row>
+            
+            
+               <b-row class="my-1">
+                <b-col sm="4">
+                  <label >Communication Media Type * :</label>
+                </b-col>
+                <b-col sm="5">
+                  <b-form-select v-model="CmTypeID" :options="communication" required ></b-form-select>
+                <div class="mt-3"> <strong></strong></div>
+                </b-col>
+              </b-row>
+                <b-row class="my-1">
+                <b-col sm="4">
+                  <label > Contractnumber * :</label>
+                </b-col>
+                <b-col sm="5">
+                  <b-form-select v-model="contractnumberid" :options="contractnum" required  ></b-form-select>
+                 <div class="mt-3"> <strong></strong></div>
+                </b-col>
+              </b-row>
+
+                <b-row class="my-1">
+                <b-col sm="4">
+                  <label > Device status * :</label>
+                </b-col>
+                <b-col sm="5">
+                <b-form-select   type="text" v-model="statusDevice" :options="status" required ></b-form-select>
+                <div class="mt-3"> <strong></strong></div>
+                </b-col>
+              </b-row>
+                <!-- <router-link to="/AllDevices"><b-button   pill variant="success" >ADD </b-button></router-link>  -->
+                 
+                   <div class="col-sm-offset-3 col-sm-9">
+                   <b-button type="submit"  @click="save()" >save</b-button>
+                   </div>
+
+                </b-form>
         <!-- <div class="col-sm-offset-3 col-sm-9">
           <div class="checkbox-inline">
             <label for="header_rows"><input type="checkbox" id="header_rows"> File contains header row?</label>
           </div>
         </div> -->
-        <table v-if="parse_csv" style="width:100%">
+        <!-- <table v-if="parse_csv" style="width:100%">
           <thead>
             <tr> 
               <th v-for="key in parse_header"  :key="key.id"
@@ -35,10 +124,10 @@
             </td>
           </tr>
           
-        </table>
-        <div class="col-sm-offset-3 col-sm-9">
+        </table> -->
+        <!-- <div class="col-sm-offset-3 col-sm-9">
          <button   @click="save()" >save</button>
-        </div>
+        </div> -->
        
       </div>
     </div>
@@ -59,7 +148,78 @@ export default {
       parse_csv: [],
       sortOrders:{},
       sortKey: '',
-      lines_t :''
+      lines_t :'',
+       form: {
+          InsertIMEI: '',
+          InsertSerialNumber : '',
+          InsertManufacturer: '',
+          InsertFirmware : '',
+          InsertGateWayID : '',
+          InsertAppID: '',
+          InsertModelID: '',
+          CmTypeID: '',
+          statusDevice : '',
+          contractnumberid : '' ,
+          },
+          imagePreview: "",
+          InsertIMEI: null,
+          InsertSerialNumber : null,
+          InsertManufacturer: null,
+          InsertFirmware : null,
+          InsertGateWayID : null,
+          InsertAppID: null,
+          InsertModelID: null,
+          CmTypeID: null,
+          statusDevice : null,
+          contractnumberid : null,
+          
+            GateWay : [
+              { value: null, text: 'Please select an option', disabled: true  },
+              { value: 'GW001', text: 'Ocean Connect' },
+            ],
+            manufacturer: [
+              { value: null, text: 'Please select an option', disabled: true  },
+              { value: 'M0001', text: 'Arrow Tech Co.,Ltd' },
+            ],
+            communication: [
+              { value: null, text: 'Please select an option', disabled: true  },
+              { value: 'CT001', text: '4G' },
+              { value: 'CT002', text: '3G' },
+              { value: 'CT003', text: 'NB-IOT' },
+              { value: 'CT004', text: 'LORA' },
+            ],
+            status : [
+              { value: null, text: 'Please select an option', disabled: true  },
+              { value: 'S0001', text: 'online' },
+              { value: 'S0002', text: 'offline' },
+              { value: 'S0003', text: ' N/A' },
+              
+            ],
+              firmware : [
+              { value: null, text: 'Please select an option', disabled: true  },
+              { value: 'F0001', text: ' N/A' },
+              
+            ],
+            Application : [
+              { value: null, text: 'Please select an option', disabled: true  },
+              { value: 'AP001', text: 'Tamroi' },
+                { value: 'N/A', text: ' N/A' },
+              
+            ],
+            contractnum : [
+              { value: null, text: 'Please select an option', disabled: true  },
+              { value: 'S0001', text: 'S001' },
+                { value: 'PE012', text: 'PE012' },
+              
+            ],
+        
+            modelname: [
+              { value: null, text: 'Please select an option', disabled: true  },
+              { value: 'M0001', text: 'A' },
+              { value: 'M0002', text: 'B' },
+              { value: 'M0003', text: 'C' },
+              { value: 'M0004', text: 'D' },
+            ],
     };
   },
   filters: {
@@ -78,7 +238,7 @@ export default {
       // console.log(JSON.stringify('vm :'+vm));
       var lines = csv.split("\n")
       vm.lines_t = JSON.stringify(lines)
-       console.log(JSON.stringify('lines :'+lines));
+       //console.log(JSON.stringify('lines :'+lines));
       var result = []
        //console.log(JSON.stringify('result :'+result));
       var headers = lines[0].split(",")
@@ -97,7 +257,7 @@ export default {
         result.push(obj)
        // console.log(JSON.stringify(obj));
       })
-      alert('Test');
+      // alert('Test');
        result.pop() // remove the last item because undefined values
       return result // JavaScript object 
     },
@@ -121,11 +281,57 @@ export default {
         alert('FileReader are not supported in this browser.');
       }
     },
-    save(){
+    save() {
+    
           console.log("function save")
           console.log(this.lines_t)
            
-    }
+    
+          // send a POST request
+          this.axios({
+            method: 'post',
+            url: 'https://localhost:44322/import/testCSV',
+          
+            data: {     
+                      
+                        InsertManufacturer: this.InsertManufacturer,
+                        InsertFirmware : this.InsertFirmware,
+                        InsertGateWayID : this. InsertGateWayID,
+                        InsertAppID: this.InsertAppID,
+                        InsertModelID: this.InsertModelID,
+                        CmTypeID: this.CmTypeID,
+                        statusDevice : this. statusDevice,
+                        contractnumberid : this.contractnumberid, 
+                        dataAll : this.lines_t
+                    },
+                      
+                 
+                })
+                        .then(function (response) {
+                            console.log(response);
+                              alert('Test');
+                              window.location.reload();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                     
+                            
+                        });
+                      
+             //console.log(JSON.stringify(values));
+              //  window.location.reload();
+                    console.log(
+                                 this.InsertManufacturer + "|" +
+                                 this.InsertFirmware + "|" +
+                                 this. InsertGateWayID + "|" +
+                                 this.InsertAppID + "|" +
+                                 this.InsertModelID + "|" +
+                                 this.CmTypeID + "|" +
+                                 this. statusDevice  + "|" +
+                                 this.contractnumberid
+                                             );
+                                       
+        },
   
   }
 };
