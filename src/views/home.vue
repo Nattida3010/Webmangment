@@ -36,9 +36,9 @@
           </tr>
           
         </table>
-        <!-- <div class="col-sm-offset-3 col-sm-9">
-          <a href="#" class="btn btn-primary">Parse CSV</a>
-        </div> -->
+        <div class="col-sm-offset-3 col-sm-9">
+         <button   @click="save()" >save</button>
+        </div>
        
       </div>
     </div>
@@ -58,7 +58,8 @@ export default {
       parse_header: [],
       parse_csv: [],
       sortOrders:{},
-      sortKey: ''
+      sortKey: '',
+      lines_t :''
     };
   },
   filters: {
@@ -76,6 +77,7 @@ export default {
       var vm = this
       // console.log(JSON.stringify('vm :'+vm));
       var lines = csv.split("\n")
+      vm.lines_t = JSON.stringify(lines)
        console.log(JSON.stringify('lines :'+lines));
       var result = []
        //console.log(JSON.stringify('result :'+result));
@@ -119,7 +121,12 @@ export default {
         alert('FileReader are not supported in this browser.');
       }
     },
-      
+    save(){
+          console.log("function save")
+          console.log(this.lines_t)
+           
+    }
+  
   }
 };
 </script>
@@ -131,5 +138,5 @@ export default {
 th, td {
   padding: 15px;
 }  */
-</style> >
+</style> 
 

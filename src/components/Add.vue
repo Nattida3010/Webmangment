@@ -87,7 +87,6 @@
                 <div class="mt-3"> <strong></strong></div>
                 </b-col>
               </b-row>
-
                 <b-row class="my-1">
                 <b-col sm="4">
                   <label > Contractnumber * :</label>
@@ -112,6 +111,7 @@
                   <b-button   type="submit"  pill style="background-color:#4863A0 ;" >ADD </b-button>
               </div>
                 </b-form>
+                
               
          </div>
     </b-jumbotron>
@@ -205,8 +205,8 @@ export default {
           this.axios({
             method: 'post',
             url: 'https://localhost:44322/insert/device',
-        
-             data: {     
+          
+            data: {     
                         InsertIMEI: this.InsertIMEI,
                         InsertSerialNumber : this.InsertSerialNumber,
                         InsertManufacturer: this.InsertManufacturer,
@@ -217,20 +217,34 @@ export default {
                         CmTypeID: this.CmTypeID,
                         statusDevice : this. statusDevice,
                         contractnumberid : this.contractnumberid, 
-                    }
+                    },
+                      
+                 
                 })
                         .then(function (response) {
-                            console.log(response);
-                           
-                            window.location.reload();
+                             console.log(response);
+                              alert('Test');
+                              window.location.reload();
                         })
                         .catch(function (error) {
                             console.log(error);
                      
                             
                         });
+                      
              //console.log(JSON.stringify(values));
               //  window.location.reload();
+                    console.log(JSON.stringify('test3'+this.InsertIMEI +
+                                             this.InsertSerialNumber +
+                                             this.InsertManufacturer +
+                                             this.InsertFirmware +
+                                             this. InsertGateWayID +
+                                             this.InsertAppID +
+                                             this.InsertModelID +
+                                             this.CmTypeID +
+                                             this. statusDevice +
+                                             this.contractnumberid 
+                                             ));
         },
   }
 
