@@ -8,11 +8,10 @@
         <b-input-group id="input"  > 
           <b-form-input v-model="filter" placeholder=" Search" />
           <b-input-group-append>
-            <b-btn :disabled="!filter" @click="filter = ''" style="background-color:#4863A0 ;"  >Clear</b-btn>
+            <b-btn :disabled="!filter" @click="filter = ''" style="background-color:#F4D03F;"  >Clear</b-btn>
           </b-input-group-append>
         </b-input-group>
-      </b-form-group>
-    </b-col>
+      </b-form-group>ee    </b-col>
   </b-row>
 
 <!-- หัวตาราง -->

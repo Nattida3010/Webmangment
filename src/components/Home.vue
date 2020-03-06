@@ -25,12 +25,12 @@
           :current-page="pageIndex" align="center"   >
 
       <template v-slot:cell(DETELE)="row" >
-          <b-button pill style="background-color: #737CA1 ;" 
+          <b-button pill variant="outline-danger"  
             @click="deleteData(row.item.IMEI)" >Delete</b-button>
        </template>
 
       <template v-slot:cell(EDIT)="row">
-          <b-button pill style="background-color: #566D7E ;"  
+          <b-button pill variant="outline-warning" 
               @click="edit( row.item.IMEI, 
                         row.item.SerialNumber , 
                         row.item.ManufacturerID, 
@@ -46,7 +46,7 @@
       </template>
   
       <template v-slot:cell(VIEW)="row">             
-          <b-button   pill style="background-color:#4863A0 ;" 
+          <b-button   pill variant="outline-success"  
              @click="model( row.item.IMEI, 
                             row.item.SerialNumber , 
                             row.item.Manufacturer, 
