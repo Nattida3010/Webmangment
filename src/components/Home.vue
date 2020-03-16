@@ -17,12 +17,13 @@
 
 <!-- หัวตาราง -->
   <b-table  
-          striped hover 
+           striped hover 
           :items ="info" 
           :fields="fields" 
           :filter="filter"
           :per-page ="pageSize"
           :current-page="pageIndex" align="center"   >
+    
 
       <template v-slot:cell(DETELE)="row"   >
           <b-button pill variant="outline-danger"  
@@ -30,7 +31,9 @@
        </template>
 
       <template v-slot:cell(EDIT)="row">
-        <b-form  @click="edit(  row.item.IMEI, 
+        <b-form   >
+          <b-button pill variant="outline-warning" 
+              @click="edit( row.item.IMEI, 
                             row.item.SerialNumber , 
                             row.item.ManufacturerID, 
                             row.item.StaID,
@@ -40,26 +43,17 @@
                             row.item.ModelID,
                             row.item.GateWayID,
                             row.item.communication,
-                          )" >
-          <b-button pill variant="outline-warning" >EDIT</b-button> 
+                          )" >EDIT</b-button> 
            
            </b-form>   
       </template>
     
 
       <template v-slot:cell(VIEW)="row" >    
-        <b-form @click="view(  row.item.IMEI, 
-                            row.item.SerialNumber , 
-                            row.item.Manufacturer, 
-                            row.item.statusDevice,
-                            row.item.FirmwareID,
-                            row.item.contractnumberid,
-                            row.item.GateWay,
-                            row.item.AppPlatID,
-                            row.item.Model,
-                            row.item.CmTypeId
-                          )" >
-          <b-button   pill variant="outline-success" >VIEW</b-button>   
+        <b-form >
+          <b-button   pill variant="outline-success" 
+              @click="view( row.item)" 
+                               >VIEW</b-button>   
             
         </b-form>
       </template>
@@ -70,7 +64,8 @@
 
  <b-modal
     title="Edit Device  Detail"  size="lg" hide-footer  
-    :id="infoEdit.id"
+    :id="'edit-'+infoEdit.id" 
+  
     :header-bg-variant="headerBgVariant"
     :header-text-variant="headerTextVariant"
     :body-bg-variant="bodyBgVariant"
@@ -79,7 +74,7 @@
     :footer-text-variant="footerTextVariant">
   <div class="container" align="center">
 
-  <b-form @submit="onSubmit">  
+  <b-form @submit="onSubmit" >  
         <b-row class="my-1">
           <b-col sm="4"><label> IMEI :</label> </b-col>
           <b-col sm="5">
@@ -104,7 +99,7 @@
         <b-row class="my-1"> 
           <b-col sm="4"> <label > Model * :</label></b-col>
           <b-col sm="5">
-               <b-form-select v-model="infoEdit.ModelID" :options=" modelname" required ></b-form-select>
+               <b-form-select v-model="infoEdit.ModelID" :options=" model" required ></b-form-select>
           </b-col>
         </b-row>
 
@@ -163,6 +158,19 @@
      <b-pagination  align="center" size="md" :total-rows=" info.length"
          v-model="pageIndex" :per-page="pageSize">
     </b-pagination>
+    
+     
+         <b-form-select
+      v-model="selected"
+      :options="infordata"
+      class="mb-3"
+      value-field="IMEI"
+      text-field="IMEI"
+      disabled-field="notEnabled"
+      @change="test1(IMEI)"
+    ></b-form-select>
+     
+    
 
   <div align="center"  >
       CurrentPage: {{pageIndex}}
@@ -170,8 +178,7 @@
   <!-- กดปุ่ม view แล้วโชว์ detail -->
   <b-modal  
           title="Device Detail"
-          
-          :id="infoModal.id" 
+          :id="'modal-'+infoModal.id" 
           :header-bg-variant="headerBgVariant"
           :header-text-variant="headerTextVariant"
           :body-bg-variant="bodyBgVariant"
@@ -200,6 +207,7 @@
     export default {
       data() {
         return { 
+          infordata:'',
           info: {
             IMEI: "",
             SerialNumber: "",
@@ -218,7 +226,8 @@
         fields: [     
             { key: 'IMEI',  sortable: true },
             { key: 'SerialNumber', sortable: false },
-            { key: 'statusDevice', label: 'Status',sortable: true, },  
+            { key: 'statusDevice', label: 'Status',sortable: true, },
+            // { key: 'TESt', },   
             { key: 'DETELE', },      
             { key: 'EDIT', },
             { key: 'VIEW'} 
@@ -292,7 +301,7 @@
           { value: 'PE012', text: 'PE012' },
           
         ],
-          modelname: [
+          model: [
           { value: null, text: 'Please select an option', disabled: true  },
           { value: 'M0001', text: 'A' },
           { value: 'M0002', text: 'B' },
@@ -308,63 +317,52 @@
                   .then(function(response) {
                   // console.log(JSON.stringify(response.data));
                     self.info = response.data;
+                    console.log( self.info);
+                    
+                    self.infordata =response.data;
                   }
               );        
             },
             methods:  {
+              test1(x){
+                    alert(x)
+              },
                     // set ค่า detail เมื่อกดปุ่ม view               
-                 view:function( 
-                                imei,
-                                Serial_Number,
-                                Manufacturer,
-                                status_Device,
-                                firmwar,
-                                contract_num,
-                                Gate_Way,
-                                AppPlat_ID,
-                                Model,
-                                CmTypeId 
-                  )
+                 view:function(item)
             { 
+                // console.log(item);
+                
+              this.infoModal.id = item.IMEI,
+              this.infoModal.SerialNumber = item.SerialNumber ,
+              this.infoModal.Manufacturer = item.Manufacturer,
+              this.infoModal.statusDevice = item.statusDevice,
+              this.infoModal.FirmwareID = item.FirmwareID,
+              this.infoModal.contractnumberid = item.contractnumberid,
+              this.infoModal.GateWay =  item.GateWay,
+              this.infoModal.AppPlatID = item.AppPlatID,
+              this.infoModal.Model = item.Model,
+              this.infoModal.CmTypeId = item.CmTypeId
+              this.$root.$emit( 'bv::show::modal', 
+                                'modal-'+this.infoModal.id ) 
+
+        
               
-              this.infoModal.id = imei,
-              this.infoModal.SerialNumber = Serial_Number ,
-              this.infoModal.Manufacturer = Manufacturer,
-              this.infoModal.statusDevice = status_Device,
-              this.infoModal.FirmwareID = firmwar,
-              this.infoModal.contractnumberid = contract_num,
-              this.infoModal.GateWay =  Gate_Way,
-              this.infoModal.AppPlatID = AppPlat_ID,
-              this.infoModal.Model = Model,
-              this.infoModal.CmTypeId = CmTypeId
- 
+            
               
-              this.$root.$emit('bv::show::modal', 
-                                imei,
-                                Serial_Number,
-                                Manufacturer,
-                                status_Device,
-                                firmwar,
-                                contract_num,
-                                Gate_Way,
-                                AppPlat_ID,
-                                Model,
-                                CmTypeId
-                                ) 
-              console.log('model');                           
-              console.log('imei :'+imei); 
-              console.log('Serial_Number :'+Serial_Number);
-              console.log('Manufacturer :'+Manufacturer);
-              console.log('status_Device :'+ status_Device);
-              console.log('firmwar :'+firmwar);
-              console.log('contract_num :'+contract_num);
-              console.log('Gate_Way :'+Gate_Way);
-              console.log('AppPlat_ID :'+AppPlat_ID);
-              console.log('Model : '+Model);
-              console.log('CmTypeId : '+CmTypeId);
+              console.log('viwe');                           
+              console.log('imei :'+item.IMEI); 
+              console.log('Serial_Number :'+item.SerialNumber);
+              console.log('Manufacturer :'+item.Manufacturer);
+              console.log('status_Device :'+ item.statusDevice);
+              console.log('firmwar :'+item.FirmwareID);
+              console.log('contract_num :'+item.contractnumberid);
+              console.log('Gate_Way :'+item.GateWay);
+              console.log('AppPlat_ID :'+item.AppPlatID);
+              console.log('Model : '+item.Model);
+              console.log('CmTypeId : '+item.CmTypeId);
 
             },
-         
+        
                        // set ค่า detail เมื่อกดปุ่ม edit   
            edit: function(
                           imei,
@@ -390,18 +388,11 @@
             this.infoEdit.ModelID = ModelID,
             this.infoEdit.GateWayID = GateWayID,
             this.infoEdit.communication = communication,
-            // this.$refs['#infoEdit.id'];
+      
             this.$root.$emit('bv::show::modal', 
-                              imei,
-                              Serial_Number,
-                              Manufacturer,
-                              StaID,
-                              Firmware,
-                              contractnumberid,
-                              applicationid,
-                              ModelID,
-                              GateWayID,
-                              communication 
+                             'edit-'+this.infoEdit.id 
+                           
+                           
                               )   
 
             console.log('edit');

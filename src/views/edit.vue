@@ -1,5 +1,4 @@
-<template  v-for="(results, imeiNum) in fields" >  
-
+<template  v-for="(results, imeiNum) in fields" >
 <div  id="All" class="container" align="center" >
 
   <b-row >
@@ -41,8 +40,23 @@
                         row.item.ModelID,
                         row.item.GateWayID)" >EDIT</b-button>
       </template>
+      
+      
+      <template v-slot:cell(VIEW)="row">
+        
+        <b-button size="sm" @click.stop="row.toggleDetails">
+          {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
+        </b-button>
+      </template>
+      <template slot="row-details" slot-scope="row">
+        <b-card    >
+
+            <li v-for="(value, key) in row.item" :key="key">{{key}}: {{ value}}</li>
+        </b-card>
+      </template>
   
-      <template v-slot:cell(VIEW)="row">             
+
+      <!-- <template v-slot:cell(VIEW)="row">             
           <b-button   pill variant="outline-info"  
              @click="model( row.item.IMEI, 
                             row.item.SerialNumber , 
@@ -53,8 +67,10 @@
                             row.item.GateWay,
                             row.item.AppPlatID,
                             row.item.Model)">VIEW</b-button> 
-         </template>
+         </template> -->
+         
   </b-table >  
+
 <!-- กดปุ่ม view แล้วโชว์ detail -->
   <b-modal  
           title="Device Detail"
@@ -65,7 +81,7 @@
           :body-text-variant="bodyTextVariant"
           :footer-bg-variant="footerBgVariant"
           :footer-text-variant="footerTextVariant">
-              <pre><b> IMEI :</b>        {{infoModal.id }}</pre> 
+              <pre><b> IMEI :</b>    {{infoModal.id }}</pre> 
               <pre><b> SerialNumber :</b>{{infoModal.SerialNumber }}</pre> 
               <pre><b> Status : </b>     {{ infoModal.statusDevice }}</pre>
               <pre><b> Model  : </b>   {{infoModal.Model }}</pre>
@@ -161,7 +177,15 @@
   <div align="center"  >
       CurrentPage: {{pageIndex}}
   </div>  
-
+                  <b-form-select
+                    v-model="selected"
+                    :options="infordata"
+                    class="mb-3"
+                    value-field="IMEI"
+                    text-field="IMEI"
+                     disabled-field="notEnabled"
+                    @change="test1(IMEI)"
+                  ></b-form-select>
 </div>
 </template>
 
@@ -269,19 +293,33 @@
         ],
             };
           },
+          computed: {
+      sortOptions() {
+        // Create an options list from our fields
+        return this.fields
+          .filter(f => f.sortable)
+          .map(f => {
+            return { text: f.label, value: f.key }
+          })
+      }
+    },
               mounted() {
                 var self = this;
                 axios
                   .get("https://localhost:44322/view/allDevice")
                   .then(function(response) {
-                   console.log(JSON.stringify(response.data));
+                  //  console.log(JSON.stringify(response.data));
                     self.info = response.data;
                   }
               );
               
            },
                methods: {
-                    // set ค่า detail เมื่อกดปุ่ม view               
+                test1(x){
+                    alert(x)
+              },
+
+           // set ค่า detail เมื่อกดปุ่ม view               
                       model(imei,
                             Serial_Number,
                             Manufacturer,
