@@ -160,15 +160,7 @@
     </b-pagination>
     
      
-         <b-form-select
-      v-model="selected"
-      :options="infordata"
-      class="mb-3"
-      value-field="IMEI"
-      text-field="IMEI"
-      disabled-field="notEnabled"
-      @change="test1(IMEI)"
-    ></b-form-select>
+      
      
     
 
@@ -207,7 +199,7 @@
     export default {
       data() {
         return { 
-          infordata:'',
+       
           info: {
             IMEI: "",
             SerialNumber: "",
@@ -318,20 +310,16 @@
                   // console.log(JSON.stringify(response.data));
                     self.info = response.data;
                     console.log( self.info);
-                    
-                    self.infordata =response.data;
+ 
                   }
               );        
             },
             methods:  {
-              test1(x){
-                    alert(x)
-              },
+              
                     // set ค่า detail เมื่อกดปุ่ม view               
-                 view:function(item)
+             view:function(item)
             { 
                 // console.log(item);
-                
               this.infoModal.id = item.IMEI,
               this.infoModal.SerialNumber = item.SerialNumber ,
               this.infoModal.Manufacturer = item.Manufacturer,
@@ -343,12 +331,9 @@
               this.infoModal.Model = item.Model,
               this.infoModal.CmTypeId = item.CmTypeId
               this.$root.$emit( 'bv::show::modal', 
-                                'modal-'+this.infoModal.id ) 
+                                'modal-'+this.infoModal.id
+                                 ) 
 
-        
-              
-            
-              
               console.log('viwe');                           
               console.log('imei :'+item.IMEI); 
               console.log('Serial_Number :'+item.SerialNumber);
@@ -391,8 +376,6 @@
       
             this.$root.$emit('bv::show::modal', 
                              'edit-'+this.infoEdit.id 
-                           
-                           
                               )   
 
             console.log('edit');
