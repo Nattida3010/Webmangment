@@ -1,7 +1,6 @@
 <template  >  
 
 <div  id="All" class="container" align="center"  >
-
   <b-row >
     <b-col md="6" class="my-2"  id="search"   >
       <b-form-group horizontal  class="mb-0" >
@@ -448,7 +447,6 @@
                             statusDevice :this.infoEdit.StaID,
                             contractnumberid : this.infoEdit.contractnumberid,
                             communication : this.infoEdit.communication,
-                
                       }
                         })
                     this.$swal({

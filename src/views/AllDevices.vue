@@ -14,33 +14,7 @@
           <h6 id="h6">Device Management</h6>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
-
-    
-        <!-- <div>
-          <b-navbar-nav>
-             <router-link style="color:white; margin-left:10px;" to="/home">Home</router-link>
-          </b-navbar-nav>
-       </div>
-
-      <div>
-        <b-navbar-nav>
-          <router-link style="color:white; margin-left:10px;" to="/button">button</router-link>
-        </b-navbar-nav>
-      </div>
-
-      <div>
-        <b-navbar-nav>
-          <router-link style="color:white; margin-left:10px;" to="/model">model</router-link>
-        </b-navbar-nav>
-      </div>
-      
-      <div>
-        <b-navbar-nav>
-          <router-link style="color:white; margin-left:10px;" to="/AllDevices">AllDevices</router-link>
-      </b-navbar-nav>
-    </div>
-       -->
-
+              
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-form>
@@ -77,6 +51,8 @@
           <b-tab title=" ALL DEVICES" > <Home/></b-tab>
           <b-tab title="ADD DEVICE"><Add/></b-tab>
           <b-tab title=" IMPORT DEVICE"><ImportFile/></b-tab>
+            <b-tab title=" UPDATE FILE"><UpdateFile/></b-tab>
+          <b-tab title=" DELETE "><DeleteAll/></b-tab>
           <b-tab title="SIM" disabled> <Home/></b-tab>
           <b-tab title="CONTRACT" disabled> <About/></b-tab>
         </b-tabs>
@@ -87,14 +63,15 @@
 </template>
 
 <script>
-
 import ImportFile from '@/components/ImportFile'
+import UpdateFile from '@/components/UpdateFile'
 import Home from '@/components/Home'
 import Add from '@/components/Add'
+import DeleteAll from '@/components/DeleteAll'
 
 export default {
   components:{
-    ImportFile , Home ,Add
+    ImportFile , Home ,Add,DeleteAll,UpdateFile
   }
 
 

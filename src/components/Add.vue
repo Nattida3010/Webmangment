@@ -1,4 +1,3 @@
-
 <template>
   <!-- style=" box-shadow: 10px 10px 5px grey;" -->
   <b-jumbotron style="background-color: #D2E1E1">
@@ -170,7 +169,6 @@ export default {
       CmTypeID: null,
       statusDevice: null,
       contractnumberid: null,
-
       GateWay: [
         { value: null, text: "Please select an option", disabled: true },
         { value: "GW001", text: "Ocean Connect" }
@@ -206,7 +204,6 @@ export default {
         { value: "S0001", text: "S001" },
         { value: "PE012", text: "PE012" }
       ],
-
       modelname: [
         { value: null, text: "Please select an option", disabled: true },
         { value: "M0001", text: "A" },
@@ -216,7 +213,6 @@ export default {
       ]
     };
   },
-
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
@@ -224,7 +220,6 @@ export default {
       this.axios({
         method: "post",
         url: "https://localhost:44322/insert/device",
-
         data: {
               InsertIMEI: this.InsertIMEI,
               InsertSerialNumber: this.InsertSerialNumber,
@@ -258,7 +253,6 @@ export default {
       });
       console.log(
         JSON.stringify(
-
             this.InsertIMEI +
             this.InsertSerialNumber +
             this.InsertManufacturer +

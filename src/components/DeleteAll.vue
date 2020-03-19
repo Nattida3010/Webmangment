@@ -142,16 +142,7 @@
         <b-row class="my-1"> 
           <b-col sm="4"> <label > Communication Media Type * :</label></b-col>
           <b-col sm="5">
-               <b-form-select
-                  v-model="selected"
-                  :options="infordata"
-                  class="mb-3"
-                  value-field="IMEI"
-                  text-field="IMEI"
-                  disabled-field="notEnabled"
-                  @change="test1(IMEI)"
-                required  ></b-form-select>
-          <!-- <b-form-select  v-model="infoEdit.communication" :options="communication" required ></b-form-select> -->
+          <b-form-select  v-model="infoEdit.communication" :options="communication" required ></b-form-select>
           </b-col>
         </b-row>  
   
@@ -208,7 +199,7 @@
     export default {
       data() {
         return { 
-          infordata:'',
+       
           info: {
             IMEI: "",
             SerialNumber: "",
@@ -319,37 +310,16 @@
                   // console.log(JSON.stringify(response.data));
                     self.info = response.data;
                     console.log( self.info);
-                    
-                    self.infordata =response.data;
+ 
                   }
               );        
             },
             methods:  {
-              test1(x){
-                this.axios({
-                method: 'get',
-                url: 'https://localhost:44322/lukUp/application',
-                data: {     
-                            // InsertIMEI : this.infoEdit.id,
-                            // InsertSerialNumber :this.infoEdit.SerialNumber,
-                            // InsertManufacturer: this.infoEdit.ManufacturerID,
-                            // InsertFirmware : this.infoEdit.Firmware,
-                            // InsertGateWayID : this.infoEdit.GateWayID,
-                            // InsertAppID: this.infoEdit.applicationid,
-                            // InsertModelID:this.infoEdit.ModelID,
-                            // statusDevice :this.infoEdit.StaID,
-                            // contractnumberid : this.infoEdit.contractnumberid,
-                            // communication : this.infoEdit.communication,
-                
-                      }
-                        })
-                    alert(x)
-              },
+              
                     // set ค่า detail เมื่อกดปุ่ม view               
-                 view:function(item)
+             view:function(item)
             { 
                 // console.log(item);
-                
               this.infoModal.id = item.IMEI,
               this.infoModal.SerialNumber = item.SerialNumber ,
               this.infoModal.Manufacturer = item.Manufacturer,
@@ -361,12 +331,9 @@
               this.infoModal.Model = item.Model,
               this.infoModal.CmTypeId = item.CmTypeId
               this.$root.$emit( 'bv::show::modal', 
-                                'modal-'+this.infoModal.id ) 
+                                'modal-'+this.infoModal.id
+                                 ) 
 
-        
-              
-            
-              
               console.log('viwe');                           
               console.log('imei :'+item.IMEI); 
               console.log('Serial_Number :'+item.SerialNumber);
@@ -409,8 +376,6 @@
       
             this.$root.$emit('bv::show::modal', 
                              'edit-'+this.infoEdit.id 
-                           
-                           
                               )   
 
             console.log('edit');
@@ -483,7 +448,6 @@
                             statusDevice :this.infoEdit.StaID,
                             contractnumberid : this.infoEdit.contractnumberid,
                             communication : this.infoEdit.communication,
-                
                       }
                         })
                     this.$swal({
