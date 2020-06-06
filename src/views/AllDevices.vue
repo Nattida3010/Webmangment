@@ -52,7 +52,7 @@
           <b-tab title="ADD DEVICE"><Add/></b-tab>
           <b-tab title=" IMPORT DEVICE"><ImportFile/></b-tab>
             <b-tab title=" UPDATE FILE"><UpdateFile/></b-tab>
-          <b-tab title=" DELETE "><DeleteAll/></b-tab>
+          <b-tab title=" DELETE "  disabled><DeleteAll/></b-tab>
           <b-tab title="SIM" disabled> <Home/></b-tab>
           <b-tab title="CONTRACT" disabled> <About/></b-tab>
         </b-tabs>

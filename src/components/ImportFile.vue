@@ -289,10 +289,11 @@ export default {
                  
                 })
                         .then(function (response) {
-                            console.log(response);
-                           alert("test");
-                           
-                            return response.data
+                   
+                          console.log(response);
+                                    
+                         
+                           return response.data
 
                           //  window.location.reload();
                            

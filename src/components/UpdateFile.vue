@@ -15,7 +15,7 @@
       </div>
     </div>
            <b-button  style="margin-left: 50%;"   type="submit" @click="save()" >save</b-button>
-   <template>
+   <!-- <template>
  <table v-if="parse_csv">
           <thead>
             <tr>
@@ -34,7 +34,7 @@
             </td>
           </tr>
         </table>
-   </template>
+   </template> -->
 
 
     </b-jumbotron>
